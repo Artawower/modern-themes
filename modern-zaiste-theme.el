@@ -1,4 +1,4 @@
-;;; modern-pinkywinky-theme.el --- Legible light theme inspired by Pinky Winky -*- lexical-binding:t -*-
+;;; modern-zaiste-theme.el --- Modern Zaiste theme port -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Free Software Foundation, Inc.
 
@@ -24,49 +24,50 @@
 
 ;;; Commentary:
 ;;
-;; The `modern-pinkywinky' theme is a port of the Pinky Winky theme
+;; The `modern-zaiste' theme is a port of the Zaiste theme
 ;; to the `modus-themes' structure.
 
 ;;; Code:
 
 (require 'modus-themes)
 
-(defconst modern-pinkywinky-palette-partial
-  '((cursor "#00AEE8")
-    (bg-main "#f8f8ff")
+(defconst modern-zaiste-palette-partial
+  '((cursor "#0098dd")
+    (bg-main "#f0f0f0")
     (bg-dim "#fafafa")
-    (bg-alt "#efefef")
-    (fg-main "#44425e")
-    (fg-dim "#73797e")
-    (fg-alt "#A09BB3")
+    (bg-alt "#fafafa")
+    (fg-main "#383a42")
+    (fg-dim "#a0a1a7")
+    (fg-alt "#c6c7c7")
     (bg-active "#dfdfdf")
-    (bg-inactive "#f8f8ff")
+    (bg-inactive "#f0f0f0")
     (border "#c6c7c7")
 
-    (red "#FF3399")
+    (red "#e45649")
     (red-warmer "#f65866")
-    (red-cooler "#d50f7f")
-    (red-faint "#c24552")
-    (green "#00D364")
-    (green-warmer "#4a7d00")
-    (green-cooler "#007f68")
-    (green-faint "#61756c")
-    (yellow "#FFAA00")
-    (yellow-warmer "#b6532f")
-    (yellow-cooler "#b65050")
-    (yellow-faint "#9a5f6a")
-    (blue "#00AEE8")
-    (blue-warmer "#5250ef")
-    (blue-cooler "#065fff")
-    (blue-faint "#6060d0")
-    (magenta "#CC66FF")
-    (magenta-warmer "#c75ae8")
-    (magenta-cooler "#8e44f3")
-    (magenta-faint "#a45392")
-    (cyan "#00CED1")
-    (cyan-warmer "#3f6faf")
-    (cyan-cooler "#0f7b8f")
-    (cyan-faint "#5f60bf")
+    (red-cooler "#e45649")
+    (red-faint "#f2a1a1")
+    (green "#50a14f")
+    (green-warmer "#98c379")
+    (green-cooler "#50a14f")
+    (green-faint "#a3d4a3")
+    (yellow "#bda800")
+    (yellow-warmer "#da8548")
+    (yellow-cooler "#bda800")
+    (yellow-faint "#e8d888")
+    (blue "#0098dd")
+    (blue-warmer "#275fe4")
+    (blue-cooler "#0098dd")
+    (blue-faint "#d2ecff")
+    (magenta "#a626a4")
+    (magenta-warmer "#a626a4")
+    (magenta-cooler "#823ff1")
+    (magenta-faint "#dcbce8")
+    (cyan "#0184bc")
+    (cyan-warmer "#0184bc")
+    (cyan-cooler "#4db5bd")
+    (cyan-faint "#aee2f2")
+    (teal "#4db5bd")
 
     (bg-red-intense "#ff7f88")
     (bg-green-intense "#86df80")
@@ -82,34 +83,24 @@
     (bg-magenta-subtle "#facdf5")
     (bg-cyan-subtle "#c2ecf0")
 
-    (bg-added "#caf4da")
-    (bg-added-faint "#dff6ea")
-    (bg-added-refine "#bae9cf")
+    (bg-added "#d6f5d6")
+    (bg-added-faint "#ecfcec")
+    (bg-added-refine "#bef5be")
     (fg-added "#005000")
 
-    (bg-changed "#ffdfb9")
-    (bg-changed-faint "#ffefcb")
-    (bg-changed-refine "#ffcfa0")
+    (bg-changed "#ffecb3")
+    (bg-changed-faint "#fff6da")
+    (bg-changed-refine "#ffdd80")
     (fg-changed "#553d00")
 
-    (bg-removed "#ffcee0")
-    (bg-removed-faint "#ffdfe6")
-    (bg-removed-refine "#f5b6c8")
+    (bg-removed "#ffccd6")
+    (bg-removed-faint "#ffe6eb")
+    (bg-removed-refine "#ff99aa")
     (fg-removed "#8f1313")
 
-    ;; Special named colors
-    (bg-completion-col "#f4cfff")
-    (bg-hover-col "#b4cfff")
-    (bg-hover-sec-col "#aaeccf")
-    (bg-paren-col "#9fc0ef")
-    (bg-err-col "#ffd0e6")
-    (bg-warn-col "#ffe5ba")
-    (bg-info-col "#bbefda")
-    (bg-region-col "#eecfff")
+    (bg-mode-line-active-col "#e7e7e7")))
 
-    (bg-region-col "#eecfff")))
-
-(defconst modern-pinkywinky-palette-common
+(defconst modern-zaiste-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
 
@@ -149,8 +140,8 @@
 
     (bg-mark-delete bg-err)
     (fg-mark-delete err)
-    (bg-mark-select bg-magenta-subtle)
-    (fg-mark-select magenta)
+    (bg-mark-select bg-blue-intense)
+    (fg-mark-select blue)
     (bg-mark-other bg-warning)
     (fg-mark-other warning)
 
@@ -179,57 +170,56 @@
     (fg-heading-7 rainbow-7)
     (fg-heading-8 rainbow-8)))
 
-(defconst modern-pinkywinky-palette-mappings-partial
-  '((err red-warmer)
+(defconst modern-zaiste-palette-mappings-partial
+  '((err red)
     (warning yellow)
-    (info green-cooler)
+    (info blue)
 
-    (bg-mode-line-active bg-active)
+    (bg-mode-line-active bg-mode-line-active-col)
     (fg-mode-line-active fg-main)
 
-    (bg-completion bg-completion-col)
-    (bg-hover bg-hover-col)
-    (bg-hover-secondary bg-hover-sec-col)
+    (bg-completion blue-faint)
+    (bg-hover blue-faint)
+    (bg-hover-secondary blue-faint)
     (bg-hl-line bg-dim)
-    (bg-paren-match bg-paren-col)
-    (bg-err bg-err-col)
-    (bg-warning bg-warn-col)
-    (bg-info bg-info-col)
-    (bg-region bg-region-col)
+    (bg-paren-match bg-active)
+    (bg-err red)
+    (bg-warning yellow)
+    (bg-info blue)
+    (bg-region blue-faint)
 
     (fg-link blue)
-    (fg-link-visited green-cooler)
-    (name magenta-warmer)
-    (keybind red-cooler)
-    (identifier magenta-faint)
-    (fg-prompt magenta-warmer)
+    (fg-link-visited magenta)
+    (name red)
+    (keybind red)
+    (identifier red)
+    (fg-prompt magenta)
 
-    (builtin blue)
+    (builtin magenta)
     (comment fg-dim)
-    (constant fg-main)
-    (fnname blue)
-    (fnname-call blue)
-    (keyword magenta-warmer)
+    (constant magenta-cooler)
+    (fnname green)
+    (fnname-call green)
+    (keyword blue)
     (preprocessor blue)
-    (docstring cyan-faint)
-    (string green)
-    (type yellow)
+    (docstring fg-dim)
+    (string yellow)
+    (type red)
     (variable fg-main)
-    (property fg-main)
-    (variable-use fg-main)
-    (rx-backslash cyan-cooler)
-    (rx-construct red-cooler)
+    (variable-use magenta)
+    (rx-backslash cyan)
+    (rx-construct red)
 
-    (accent-0 magenta-cooler)
+    (accent-0 magenta)
     (accent-1 yellow)
-    (accent-2 cyan-cooler)
+    (accent-2 blue)
     (accent-3 red)
 
-    (date-common cyan-cooler)
-    (date-deadline red-warmer)
+    (date-common cyan)
+    (date-deadline red)
     (date-deadline-subtle red-faint)
     (date-event fg-alt)
-    (date-holiday magenta-warmer)
+    (date-holiday magenta)
     (date-now fg-main)
     (date-range fg-alt)
     (date-scheduled yellow)
@@ -238,23 +228,23 @@
     (date-weekend red-faint)
 
     (fg-prose-code yellow)
-    (prose-done green-cooler)
-    (fg-prose-macro cyan-cooler)
+    (prose-done green)
+    (fg-prose-macro cyan)
     (prose-metadata fg-dim)
     (prose-metadata-value fg-alt)
     (prose-table fg-alt)
     (prose-table-formula info)
     (prose-tag yellow-faint)
-    (prose-todo red-warmer)
-    (fg-prose-verbatim magenta-cooler)
+    (prose-todo red)
+    (fg-prose-verbatim magenta)
 
-    (mail-cite-0 yellow-cooler)
+    (mail-cite-0 yellow)
     (mail-cite-1 magenta)
-    (mail-cite-2 blue-warmer)
-    (mail-cite-3 cyan-warmer)
+    (mail-cite-2 blue)
+    (mail-cite-3 cyan)
     (mail-part magenta-faint)
-    (mail-recipient magenta-warmer)
-    (mail-subject magenta-cooler)
+    (mail-recipient magenta)
+    (mail-subject magenta)
     (mail-other magenta)
 
     (bg-search-static bg-warning)
@@ -267,18 +257,18 @@
     (bg-search-rx-group-2 bg-red-subtle)
     (bg-search-rx-group-3 bg-cyan-subtle)
 
-    (rainbow-0 magenta-warmer)
-    (rainbow-1 magenta-cooler)
+    (rainbow-0 magenta)
+    (rainbow-1 magenta)
     (rainbow-2 yellow)
     (rainbow-3 cyan)
     (rainbow-4 magenta)
-    (rainbow-5 blue-warmer)
-    (rainbow-6 red-cooler)
-    (rainbow-7 cyan-cooler)
-    (rainbow-8 yellow-cooler)))
+    (rainbow-5 blue)
+    (rainbow-6 red)
+    (rainbow-7 cyan)
+    (rainbow-8 yellow)))
 
-(defcustom modern-pinkywinky-palette-overrides nil
-  "Overrides for `modern-pinkywinky-palette'.
+(defcustom modern-zaiste-palette-overrides nil
+  "Overrides for `modern-zaiste-palette'.
 
 Mirror the elements of the aforementioned palette, overriding
 their value.
@@ -286,29 +276,29 @@ their value.
 To preview the palette entries, use `modus-themes-preview-colors' or
 `modus-themes-preview-colors-current' (read the documentation for
 further details)."
-  :group 'modern-pinkywinky
+  :group 'modern-zaiste
   :type '(repeat (list symbol (choice symbol string))))
 
-(defconst modern-pinkywinky-palette
+(defconst modern-zaiste-palette
   (modus-themes-generate-palette
-   modern-pinkywinky-palette-partial
+   modern-zaiste-palette-partial
    nil
    nil
-   (append modern-pinkywinky-palette-mappings-partial modern-pinkywinky-palette-common)))
+   (append modern-zaiste-palette-mappings-partial modern-zaiste-palette-common)))
 
-(defconst modern-pinkywinky-custom-faces
+(defconst modern-zaiste-custom-faces
   '(`(magit-section-highlight ((,c :background ,bg-alt)))
     `(magit-diff-file-heading-highlight ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
 
 (modus-themes-theme
- 'modern-pinkywinky
- 'modern-pinkywinky
- "Legible light theme inspired by Pinky Winky."
+ 'modern-zaiste
+ 'modern-zaiste
+ "Modern Zaiste theme port."
  'light
- 'modern-pinkywinky-palette
+ 'modern-zaiste-palette
  nil
- 'modern-pinkywinky-palette-overrides
- 'modern-pinkywinky-custom-faces)
+ 'modern-zaiste-palette-overrides
+ 'modern-zaiste-custom-faces)
 
-(provide 'modern-pinkywinky-theme)
-;;; modern-pinkywinky-theme.el ends here
+(provide 'modern-zaiste-theme)
+;;; modern-zaiste-theme.el ends here

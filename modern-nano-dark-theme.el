@@ -1,4 +1,4 @@
-;;; modern-pinkywinky-theme.el --- Legible light theme inspired by Pinky Winky -*- lexical-binding:t -*-
+;;; modern-nano-dark-theme.el --- Modern Nano Dark theme port -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Free Software Foundation, Inc.
 
@@ -24,49 +24,57 @@
 
 ;;; Commentary:
 ;;
-;; The `modern-pinkywinky' theme is a port of the Pinky Winky theme
+;; The `modern-nano-dark' theme is a port of the Nano Dark theme
 ;; to the `modus-themes' structure.
+;; It follows the N Λ N O aesthetic: roughly monochrome with few accents.
 
 ;;; Code:
 
 (require 'modus-themes)
 
-(defconst modern-pinkywinky-palette-partial
-  '((cursor "#00AEE8")
-    (bg-main "#f8f8ff")
-    (bg-dim "#fafafa")
-    (bg-alt "#efefef")
-    (fg-main "#44425e")
-    (fg-dim "#73797e")
-    (fg-alt "#A09BB3")
-    (bg-active "#dfdfdf")
-    (bg-inactive "#f8f8ff")
-    (border "#c6c7c7")
+(defconst modern-nano-dark-palette-partial
+  '((cursor "#ECEFF4")
+    (bg-main "#2E3440")
+    (bg-dim "#242832")
+    (bg-alt "#242832")
+    (fg-main "#ECEFF4")
+    (fg-dim "#677691")
+    (fg-alt "#677691")
+    (bg-active "#3B4252")
+    (bg-inactive "#2E3440")
+    (border "#3B4252")
 
-    (red "#FF3399")
-    (red-warmer "#f65866")
-    (red-cooler "#d50f7f")
+    ;; Nano Palette
+    ;; Salient: #81A1C1 (Blueish)
+    ;; Popout:  #D08770 (Orange)
+    ;; Critical: #EBCB8B (Yellow)
+    ;; Strong:   #FFFFFF (White)
+
+    (red "#EF5350")
+    (red-warmer "#D08770")
+    (red-cooler "#EF5350")
     (red-faint "#c24552")
-    (green "#00D364")
-    (green-warmer "#4a7d00")
-    (green-cooler "#007f68")
+    (green "#66BB6A")
+    (green-warmer "#66BB6A")
+    (green-cooler "#66BB6A")
     (green-faint "#61756c")
-    (yellow "#FFAA00")
-    (yellow-warmer "#b6532f")
-    (yellow-cooler "#b65050")
+    (yellow "#FFEE58")
+    (yellow-warmer "#D08770")
+    (yellow-cooler "#EBCB8B")
     (yellow-faint "#9a5f6a")
-    (blue "#00AEE8")
-    (blue-warmer "#5250ef")
-    (blue-cooler "#065fff")
-    (blue-faint "#6060d0")
-    (magenta "#CC66FF")
-    (magenta-warmer "#c75ae8")
-    (magenta-cooler "#8e44f3")
+    (blue "#677691")
+    (blue-warmer "#42A5F5")
+    (blue-cooler "#81A1C1")
+    (blue-faint "#1c4a6e")
+    (magenta "#AB47BC")
+    (magenta-warmer "#AB47BC")
+    (magenta-cooler "#81A1C1")
     (magenta-faint "#a45392")
-    (cyan "#00CED1")
-    (cyan-warmer "#3f6faf")
-    (cyan-cooler "#0f7b8f")
-    (cyan-faint "#5f60bf")
+    (cyan "#677691")
+    (cyan-warmer "#26C6DA")
+    (cyan-cooler "#81A1C1")
+    (cyan-faint "#5699AF")
+    (teal "#677691")
 
     (bg-red-intense "#ff7f88")
     (bg-green-intense "#86df80")
@@ -97,19 +105,9 @@
     (bg-removed-refine "#f5b6c8")
     (fg-removed "#8f1313")
 
-    ;; Special named colors
-    (bg-completion-col "#f4cfff")
-    (bg-hover-col "#b4cfff")
-    (bg-hover-sec-col "#aaeccf")
-    (bg-paren-col "#9fc0ef")
-    (bg-err-col "#ffd0e6")
-    (bg-warn-col "#ffe5ba")
-    (bg-info-col "#bbefda")
-    (bg-region-col "#eecfff")
+    (bg-region-col "#434C5E")))
 
-    (bg-region-col "#eecfff")))
-
-(defconst modern-pinkywinky-palette-common
+(defconst modern-nano-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
 
@@ -149,8 +147,8 @@
 
     (bg-mark-delete bg-err)
     (fg-mark-delete err)
-    (bg-mark-select bg-magenta-subtle)
-    (fg-mark-select magenta)
+    (bg-mark-select bg-info)
+    (fg-mark-select info)
     (bg-mark-other bg-warning)
     (fg-mark-other warning)
 
@@ -179,57 +177,58 @@
     (fg-heading-7 rainbow-7)
     (fg-heading-8 rainbow-8)))
 
-(defconst modern-pinkywinky-palette-mappings-partial
+(defconst modern-nano-dark-palette-mappings-partial
   '((err red-warmer)
-    (warning yellow)
-    (info green-cooler)
+    (warning yellow-warmer)
+    (warning yellow-warmer)
+    (info blue-cooler)
 
     (bg-mode-line-active bg-active)
     (fg-mode-line-active fg-main)
 
-    (bg-completion bg-completion-col)
-    (bg-hover bg-hover-col)
-    (bg-hover-secondary bg-hover-sec-col)
-    (bg-hl-line bg-dim)
-    (bg-paren-match bg-paren-col)
-    (bg-err bg-err-col)
-    (bg-warning bg-warn-col)
-    (bg-info bg-info-col)
+    (bg-completion bg-dim)
+    (bg-hover bg-active)
+    (bg-hover-secondary bg-active)
+    (bg-hl-line bg-active)
+    (bg-paren-match bg-region-col)
+    (bg-err yellow-cooler)
+    (bg-warning yellow-warmer)
+    (bg-info blue-cooler)
     (bg-region bg-region-col)
 
-    (fg-link blue)
-    (fg-link-visited green-cooler)
-    (name magenta-warmer)
-    (keybind red-cooler)
-    (identifier magenta-faint)
-    (fg-prompt magenta-warmer)
+    (fg-link blue-cooler)
+    (fg-link-visited blue-cooler)
+    (name fg-main)
+    (keybind blue-cooler)
+    (identifier fg-main)
+    (fg-prompt blue-cooler)
 
-    (builtin blue)
+    (builtin blue-cooler)
     (comment fg-dim)
     (constant fg-main)
-    (fnname blue)
-    (fnname-call blue)
-    (keyword magenta-warmer)
-    (preprocessor blue)
-    (docstring cyan-faint)
-    (string green)
-    (type yellow)
+    (fnname fg-main)
+    (fnname-call fg-main)
+    (keyword blue-cooler)
+    (preprocessor blue-cooler)
+    (docstring fg-dim)
+    (string fg-dim)
+    (type blue-cooler)
     (variable fg-main)
     (property fg-main)
     (variable-use fg-main)
-    (rx-backslash cyan-cooler)
-    (rx-construct red-cooler)
+    (rx-backslash blue-cooler)
+    (rx-construct blue-cooler)
 
-    (accent-0 magenta-cooler)
-    (accent-1 yellow)
-    (accent-2 cyan-cooler)
-    (accent-3 red)
+    (accent-0 fg-main)
+    (accent-1 fg-main)
+    (accent-2 fg-main)
+    (accent-3 fg-main)
 
-    (date-common cyan-cooler)
-    (date-deadline red-warmer)
+    (date-common cyan)
+    (date-deadline red)
     (date-deadline-subtle red-faint)
     (date-event fg-alt)
-    (date-holiday magenta-warmer)
+    (date-holiday magenta)
     (date-now fg-main)
     (date-range fg-alt)
     (date-scheduled yellow)
@@ -237,24 +236,24 @@
     (date-weekday cyan)
     (date-weekend red-faint)
 
-    (fg-prose-code yellow)
-    (prose-done green-cooler)
-    (fg-prose-macro cyan-cooler)
+    (fg-prose-code fg-dim)
+    (prose-done green)
+    (fg-prose-macro blue-cooler)
     (prose-metadata fg-dim)
     (prose-metadata-value fg-alt)
     (prose-table fg-alt)
     (prose-table-formula info)
     (prose-tag yellow-faint)
-    (prose-todo red-warmer)
-    (fg-prose-verbatim magenta-cooler)
+    (prose-todo red)
+    (fg-prose-verbatim blue-cooler)
 
-    (mail-cite-0 yellow-cooler)
+    (mail-cite-0 yellow)
     (mail-cite-1 magenta)
-    (mail-cite-2 blue-warmer)
-    (mail-cite-3 cyan-warmer)
+    (mail-cite-2 blue)
+    (mail-cite-3 cyan)
     (mail-part magenta-faint)
-    (mail-recipient magenta-warmer)
-    (mail-subject magenta-cooler)
+    (mail-recipient magenta)
+    (mail-subject magenta)
     (mail-other magenta)
 
     (bg-search-static bg-warning)
@@ -267,18 +266,18 @@
     (bg-search-rx-group-2 bg-red-subtle)
     (bg-search-rx-group-3 bg-cyan-subtle)
 
-    (rainbow-0 magenta-warmer)
-    (rainbow-1 magenta-cooler)
-    (rainbow-2 yellow)
-    (rainbow-3 cyan)
-    (rainbow-4 magenta)
-    (rainbow-5 blue-warmer)
-    (rainbow-6 red-cooler)
-    (rainbow-7 cyan-cooler)
-    (rainbow-8 yellow-cooler)))
+    (rainbow-0 fg-main)
+    (rainbow-1 fg-main)
+    (rainbow-2 fg-main)
+    (rainbow-3 fg-main)
+    (rainbow-4 fg-main)
+    (rainbow-5 fg-main)
+    (rainbow-6 fg-main)
+    (rainbow-7 fg-main)
+    (rainbow-8 fg-main)))
 
-(defcustom modern-pinkywinky-palette-overrides nil
-  "Overrides for `modern-pinkywinky-palette'.
+(defcustom modern-nano-dark-palette-overrides nil
+  "Overrides for `modern-nano-dark-palette'.
 
 Mirror the elements of the aforementioned palette, overriding
 their value.
@@ -286,29 +285,29 @@ their value.
 To preview the palette entries, use `modus-themes-preview-colors' or
 `modus-themes-preview-colors-current' (read the documentation for
 further details)."
-  :group 'modern-pinkywinky
+  :group 'modern-nano-dark
   :type '(repeat (list symbol (choice symbol string))))
 
-(defconst modern-pinkywinky-palette
+(defconst modern-nano-dark-palette
   (modus-themes-generate-palette
-   modern-pinkywinky-palette-partial
+   modern-nano-dark-palette-partial
    nil
    nil
-   (append modern-pinkywinky-palette-mappings-partial modern-pinkywinky-palette-common)))
+   (append modern-nano-dark-palette-mappings-partial modern-nano-dark-palette-common)))
 
-(defconst modern-pinkywinky-custom-faces
+(defconst modern-nano-dark-custom-faces
   '(`(magit-section-highlight ((,c :background ,bg-alt)))
     `(magit-diff-file-heading-highlight ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
 
 (modus-themes-theme
- 'modern-pinkywinky
- 'modern-pinkywinky
- "Legible light theme inspired by Pinky Winky."
- 'light
- 'modern-pinkywinky-palette
+ 'modern-nano-dark
+ 'modern-nano-dark
+ "Modern Nano Dark theme port."
+ 'dark
+ 'modern-nano-dark-palette
  nil
- 'modern-pinkywinky-palette-overrides
- 'modern-pinkywinky-custom-faces)
+ 'modern-nano-dark-palette-overrides
+ 'modern-nano-dark-custom-faces)
 
-(provide 'modern-pinkywinky-theme)
-;;; modern-pinkywinky-theme.el ends here
+(provide 'modern-nano-dark-theme)
+;;; modern-nano-dark-theme.el ends here

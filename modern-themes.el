@@ -32,8 +32,16 @@
 ;;
 ;; Available themes:
 ;; - `modern-deep-atom' (dark): Deep Atom theme port
-;; - `modern-pinkywinky' (light): Legible light theme inspired by Pinky Winky
+;; - `modern-pinkywinky` (light): Legible light theme inspired by Pinky Winky
 ;; - `modern-pinkywinky-dark' (dark): Legible dark theme inspired by Pinky Winky
+;; - `modern-zaiste` (light): Modern Zaiste theme port
+;; - `modern-nano-light` (light): Modern Nano Light theme port
+;; - `modern-nano-dark` (dark): Modern Nano Dark theme port
+;; - `modern-tokyo` (dark): Modern Tokyo theme port
+;; - `modern-catppuccin-latte` (light): Catppuccin Latte theme port
+;; - `modern-catppuccin-frappe` (dark): Catppuccin Frappe theme port
+;; - `modern-catppuccin-macchiato` (dark): Catppuccin Macchiato theme port
+;; - `modern-catppuccin-mocha` (dark): Catppuccin Mocha theme port
 ;;
 ;; Usage:
 ;;   (require 'modern-themes)
@@ -57,12 +65,20 @@ The `modern-themes' are built on top of the `modus-themes'."
 ;;;; Theme lists
 
 (defconst modern-themes-light-themes
-  '(modern-pinkywinky)
+  '(modern-pinkywinky
+    modern-zaiste
+    modern-nano-light
+    modern-catppuccin-latte)
   "List of symbols with the light Modern themes.")
 
 (defconst modern-themes-dark-themes
   '(modern-deep-atom
-    modern-pinkywinky-dark)
+    modern-nano-dark
+    modern-pinkywinky-dark
+    modern-tokyo
+    modern-catppuccin-frappe
+    modern-catppuccin-macchiato
+    modern-catppuccin-mocha)
   "List of symbols with the dark Modern themes.")
 
 (defconst modern-themes-items

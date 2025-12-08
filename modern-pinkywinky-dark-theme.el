@@ -98,18 +98,17 @@
     (bg-removed-refine "#f5b6c8")
     (fg-removed "#8f1313")
 
-    (bg-mode-line-active "#3f444a")
-    (fg-mode-line-active "#c0caf5")
+    ;; Special named colors
+    (bg-completion-col "#f4cfff")
+    (bg-hover-col "#b4cfff")
+    (bg-hover-sec-col "#aaeccf")
+    (bg-paren-col "#9fc0ef")
+    (bg-err-col "#ffd0e6")
+    (bg-warn-col "#ffe5ba")
+    (bg-info-col "#bbefda")
+    (bg-region-col "#eecfff")
 
-    (bg-completion "#f4cfff")
-    (bg-hover "#b4cfff")
-    (bg-hover-secondary "#aaeccf")
-    (bg-hl-line "#1f2335")
-    (bg-paren-match "#9fc0ef")
-    (bg-err "#ffd0e6")
-    (bg-warning "#ffe5ba")
-    (bg-info "#bbefda")
-    (bg-region "#eecfff")))
+    (bg-region-col "#eecfff")))
 
 (defconst modern-pinkywinky-dark-palette-common
   '((fringe unspecified)
@@ -186,6 +185,19 @@
     (warning yellow)
     (info green-cooler)
 
+    (bg-mode-line-active bg-active)
+    (fg-mode-line-active fg-main)
+
+    (bg-completion bg-completion-col)
+    (bg-hover bg-hover-col)
+    (bg-hover-secondary bg-hover-sec-col)
+    (bg-hl-line bg-dim)
+    (bg-paren-match bg-paren-col)
+    (bg-err bg-err-col)
+    (bg-warning bg-warn-col)
+    (bg-info bg-info-col)
+    (bg-region bg-region-col)
+
     (fg-link blue)
     (fg-link-visited green-cooler)
     (name red-warmer)
@@ -195,7 +207,7 @@
 
     (builtin blue)
     (comment fg-dim)
-    (constant magenta)
+    (constant fg-main)
     (fnname blue)
     (fnname-call red-warmer)
     (keyword magenta)
@@ -204,8 +216,9 @@
     (string magenta-warmer)
     (type magenta-warmer)
     ;; (function blue)
-    (variable red)
-    (variable-use red-warmer)
+    (variable fg-main)
+    (property fg-main)
+    (variable-use fg-main)
     (rx-backslash cyan-cooler)
     (rx-construct red-cooler)
 

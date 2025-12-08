@@ -1,4 +1,4 @@
-;;; modern-deep-atom-theme.el --- Deep Atom theme port -*- lexical-binding:t -*-
+;;; modern-nano-light-theme.el --- Modern Nano Light theme port -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Free Software Foundation, Inc.
 
@@ -24,81 +24,90 @@
 
 ;;; Commentary:
 ;;
-;; The `modern-deep-atom' theme is a port of the Deep Atom theme
+;; The `modern-nano-light' theme is a port of the Nano Light theme
 ;; to the `modus-themes' structure.
+;; It follows the N Λ N O aesthetic: roughly monochrome with few accents.
 
 ;;; Code:
 
 (require 'modus-themes)
 
-(defconst modern-deep-atom-palette-partial
-  '((cursor "#41a7fc")
-    (bg-main "#1a212e")
-    (bg-dim "#141b24")
-    (bg-alt "#141b24")
-    (fg-main "#a5b0c5")
-    (fg-dim "#5B6268")
-    (fg-alt "#5B6268")
-    (bg-active "#3f444a")
-    (bg-inactive "#1a212e")
-    (border "#3f444a")
+(defconst modern-nano-light-palette-partial
+  '((cursor "#37474F")
+    (bg-main "#FFFFFF")
+    (bg-dim "#FAFAFA")
+    (bg-alt "#FAFAFA")
+    (fg-main "#37474F")
+    (fg-dim "#90A4AE")
+    (fg-alt "#90A4AE")
+    (bg-active "#ECEFF1")
+    (bg-inactive "#FFFFFF")
+    (border "#ECEFF1")
 
-    (red "#f65866")
-    (red-warmer "#f65866")
-    (red-cooler "#f65866")
-    (red-faint "#c24552")
-    (green "#8bcd5b")
-    (green-warmer "#8bcd5b")
-    (green-cooler "#8bcd5b")
-    (green-faint "#61756c")
-    (yellow "#ECBE7B")
-    (yellow-warmer "#ECBE7B")
-    (yellow-cooler "#ECBE7B")
-    (yellow-faint "#9a5f6a")
-    (blue "#41a7fc")
-    (blue-warmer "#41a7fc")
-    (blue-cooler "#1c4a6e")
-    (blue-faint "#1c4a6e")
-    (magenta "#c75ae8")
-    (magenta-warmer "#c75ae8")
-    (magenta-cooler "#c75ae8")
-    (magenta-faint "#a45392")
-    (cyan "#34bfd0")
-    (cyan-warmer "#34bfd0")
-    (cyan-cooler "#5699AF")
-    (cyan-faint "#5699AF")
-    (teal "#4db5bd")
+    ;; Nano Palette
+    ;; Salient: #673AB7 (Purple)
+    ;; Popout:  #FFAB91 (Salmon/Orange)
+    ;; Critical: #FF6F00 (Amber)
+    ;; Strong:   #263238 (Dark Grey)
 
-    (bg-red-intense "#ff7f88")
-    (bg-green-intense "#86df80")
-    (bg-yellow-intense "#ffc200")
-    (bg-blue-intense "#cbcfff")
-    (bg-magenta-intense "#df8fff")
-    (bg-cyan-intense "#88ccff")
+    (red "#EF5350")
+    (red-warmer "#FF6F00")
+    (red-cooler "#EF5350")
+    (red-faint "#FFCDD2")
+    (green "#66BB6A")
+    (green-warmer "#66BB6A")
+    (green-cooler "#66BB6A")
+    (green-faint "#C8E6C9")
+    (yellow "#E2C12F")
+    (yellow-warmer "#FFAB91")
+    (yellow-cooler "#E2C12F")
+    (yellow-faint "#FFF9C4")
+    (blue "#90A4AE")
+    (blue-warmer "#42A5F5")
+    (blue-cooler "#90A4AE")
+    (blue-faint "#BBDEFB")
+    (magenta "#673AB7")
+    (magenta-warmer "#AB47BC")
+    (magenta-cooler "#673AB7")
+    (magenta-faint "#E1BEE7")
+    (cyan "#90A4AE")
+    (cyan-warmer "#26C6DA")
+    (cyan-cooler "#005478")
+    (cyan-faint "#B2EBF2")
+    (teal "#90A4AE")
 
-    (bg-red-subtle "#fbc3cf")
-    (bg-green-subtle "#b9edca")
-    (bg-yellow-subtle "#f7e78f")
-    (bg-blue-subtle "#ccdfff")
-    (bg-magenta-subtle "#facdf5")
-    (bg-cyan-subtle "#c2ecf0")
+    (bg-red-intense "#FFCDD2")
+    (bg-green-intense "#C8E6C9")
+    (bg-yellow-intense "#FFF9C4")
+    (bg-blue-intense "#BBDEFB")
+    (bg-magenta-intense "#E1BEE7")
+    (bg-cyan-intense "#B2EBF2")
 
-    (bg-added "#caf4da")
-    (bg-added-faint "#dff6ea")
-    (bg-added-refine "#bae9cf")
-    (fg-added "#005000")
+    (bg-red-subtle "#FAFAFA")
+    (bg-green-subtle "#FAFAFA")
+    (bg-yellow-subtle "#FAFAFA")
+    (bg-blue-subtle "#FAFAFA")
+    (bg-magenta-subtle "#FAFAFA")
+    (bg-cyan-subtle "#FAFAFA")
 
-    (bg-changed "#ffdfb9")
-    (bg-changed-faint "#ffefcb")
-    (bg-changed-refine "#ffcfa0")
-    (fg-changed "#553d00")
+    (bg-added "#C8E6C9")
+    (bg-added-faint "#E8F5E9")
+    (bg-added-refine "#A5D6A7")
+    (fg-added "#1B5E20")
 
-    (bg-removed "#ffcee0")
-    (bg-removed-faint "#ffdfe6")
-    (bg-removed-refine "#f5b6c8")
-    (fg-removed "#8f1313")))
+    (bg-changed "#FFF9C4")
+    (bg-changed-faint "#FFFDE7")
+    (bg-changed-refine "#FFF59D")
+    (fg-changed "#F57F17")
 
-(defconst modern-deep-atom-palette-common
+    (bg-removed "#FFCDD2")
+    (bg-removed-faint "#FFEBEE")
+    (bg-removed-refine "#EF9A9A")
+    (fg-removed "#B71C1C")
+
+    (fg-strong "#263238")))
+
+(defconst modern-nano-light-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
 
@@ -168,50 +177,52 @@
     (fg-heading-7 rainbow-7)
     (fg-heading-8 rainbow-8)))
 
-(defconst modern-deep-atom-palette-mappings-partial
-  '((err red)
-    (warning yellow)
-    (info blue)
+(defconst modern-nano-light-palette-mappings-partial
+  '((err red-warmer)
+    (warning yellow-warmer)
+    (warning yellow-warmer)
+    (info magenta)
 
-    (bg-mode-line-active blue-cooler)
-    (fg-mode-line-active fg-main)
+    (bg-mode-line-active bg-dim)
+    (fg-mode-line-active fg-strong)
 
+    (bg-completion bg-dim)
     (bg-hover bg-active)
-    (bg-completion bg-active)
     (bg-hover-secondary bg-active)
     (bg-hl-line bg-dim)
     (bg-paren-match bg-active)
-    (bg-err red)
-    (bg-warning yellow)
-    (bg-info blue)
+    (bg-err red-warmer)
+    (bg-warning yellow-warmer)
+    (bg-info magenta)
     (bg-region bg-active)
 
-    (fg-link blue)
-    (fg-link-visited magenta)
-    (name red)
-    (keybind red)
-    (identifier red)
+    (fg-link magenta)
+    (fg-link-visited magenta-warmer)
+    (name fg-main)
+    (keybind magenta)
+    (identifier fg-main)
     (fg-prompt magenta)
 
-    (builtin blue)
+    (builtin magenta)
     (comment fg-dim)
-    (constant red)
-    (fnname blue)
-    (fnname-call blue)
+    (constant fg-main)
+    (fnname fg-main)
+    (fnname-call fg-main)
     (keyword magenta)
-    (preprocessor blue)
+    (preprocessor magenta)
     (docstring fg-dim)
-    (string green)
-    (type yellow)
-    (variable red)
-    (variable-use red)
-    (rx-backslash cyan)
-    (rx-construct red)
+    (string fg-dim)
+    (type magenta)
+    (variable fg-main)
+    (property fg-main)
+    (variable-use fg-main)
+    (rx-backslash magenta)
+    (rx-construct magenta)
 
-    (accent-0 magenta)
-    (accent-1 yellow)
-    (accent-2 blue)
-    (accent-3 red)
+    (accent-0 fg-main)
+    (accent-1 fg-main)
+    (accent-2 fg-main)
+    (accent-3 fg-main)
 
     (date-common cyan)
     (date-deadline red)
@@ -225,9 +236,9 @@
     (date-weekday cyan)
     (date-weekend red-faint)
 
-    (fg-prose-code yellow)
+    (fg-prose-code fg-dim)
     (prose-done green)
-    (fg-prose-macro cyan)
+    (fg-prose-macro magenta)
     (prose-metadata fg-dim)
     (prose-metadata-value fg-alt)
     (prose-table fg-alt)
@@ -255,18 +266,18 @@
     (bg-search-rx-group-2 bg-red-subtle)
     (bg-search-rx-group-3 bg-cyan-subtle)
 
-    (rainbow-0 magenta)
-    (rainbow-1 magenta)
-    (rainbow-2 yellow)
-    (rainbow-3 cyan)
-    (rainbow-4 magenta)
-    (rainbow-5 blue)
-    (rainbow-6 red)
-    (rainbow-7 cyan)
-    (rainbow-8 yellow)))
+    (rainbow-0 fg-main)
+    (rainbow-1 fg-main)
+    (rainbow-2 fg-main)
+    (rainbow-3 fg-main)
+    (rainbow-4 fg-main)
+    (rainbow-5 fg-main)
+    (rainbow-6 fg-main)
+    (rainbow-7 fg-main)
+    (rainbow-8 fg-main)))
 
-(defcustom modern-deep-atom-palette-overrides nil
-  "Overrides for `modern-deep-atom-palette'.
+(defcustom modern-nano-light-palette-overrides nil
+  "Overrides for `modern-nano-light-palette'.
 
 Mirror the elements of the aforementioned palette, overriding
 their value.
@@ -274,29 +285,29 @@ their value.
 To preview the palette entries, use `modus-themes-preview-colors' or
 `modus-themes-preview-colors-current' (read the documentation for
 further details)."
-  :group 'modern-deep-atom
+  :group 'modern-nano-light
   :type '(repeat (list symbol (choice symbol string))))
 
-(defconst modern-deep-atom-palette
+(defconst modern-nano-light-palette
   (modus-themes-generate-palette
-   modern-deep-atom-palette-partial
+   modern-nano-light-palette-partial
    nil
    nil
-   (append modern-deep-atom-palette-mappings-partial modern-deep-atom-palette-common)))
+   (append modern-nano-light-palette-mappings-partial modern-nano-light-palette-common)))
 
-(defconst modern-deep-atom-custom-faces
+(defconst modern-nano-light-custom-faces
   '(`(magit-section-highlight ((,c :background ,bg-alt)))
     `(magit-diff-file-heading-highlight ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
 
 (modus-themes-theme
- 'modern-deep-atom
- 'modern-deep-atom
- "Deep Atom theme port."
- 'dark
- 'modern-deep-atom-palette
+ 'modern-nano-light
+ 'modern-nano-light
+ "Modern Nano Light theme port."
+ 'light
+ 'modern-nano-light-palette
  nil
- 'modern-deep-atom-palette-overrides
- 'modern-deep-atom-custom-faces)
+ 'modern-nano-light-palette-overrides
+ 'modern-nano-light-custom-faces)
 
-(provide 'modern-deep-atom-theme)
-;;; modern-deep-atom-theme.el ends here
+(provide 'modern-nano-light-theme)
+;;; modern-nano-light-theme.el ends here
