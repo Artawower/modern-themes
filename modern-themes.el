@@ -42,6 +42,9 @@
 ;; - `modern-catppuccin-frappe` (dark): Catppuccin Frappe theme port
 ;; - `modern-catppuccin-macchiato` (dark): Catppuccin Macchiato theme port
 ;; - `modern-catppuccin-mocha` (dark): Catppuccin Mocha theme port
+;; - `modern-github-light` (light): GitHub Light theme port
+;; - `modern-github-dark` (dark): GitHub Dark theme port
+;; - `modern-nightfly-purple-theme (dark): Nightfly Purple theme port'
 ;;
 ;; Usage:
 ;;   (require 'modern-themes)
@@ -68,7 +71,8 @@ The `modern-themes' are built on top of the `modus-themes'."
   '(modern-pinkywinky
     modern-zaiste
     modern-nano-light
-    modern-catppuccin-latte)
+    modern-catppuccin-latte
+    modern-github-light)
   "List of symbols with the light Modern themes.")
 
 (defconst modern-themes-dark-themes
@@ -78,7 +82,9 @@ The `modern-themes' are built on top of the `modus-themes'."
     modern-tokyo
     modern-catppuccin-frappe
     modern-catppuccin-macchiato
-    modern-catppuccin-mocha)
+    modern-catppuccin-mocha
+    modern-github-dark
+    modern-nightfly-purple-theme)
   "List of symbols with the dark Modern themes.")
 
 (defconst modern-themes-items

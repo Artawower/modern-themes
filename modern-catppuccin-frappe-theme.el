@@ -43,31 +43,37 @@
     (bg-inactive "#292c3c")
     (border "#737994")
 
-    (red "#e78284")
-    (red-warmer "#ea999c")
-    (red-cooler "#eebebe")
-    (red-faint "#b85658")
-    (green "#a6d189")
-    (green-warmer "#a6d189")
-    (green-cooler "#81c8be")
-    (green-faint "#7ba260")
-    (yellow "#e5c890")
-    (yellow-warmer "#ef9f76")
-    (yellow-cooler "#e5c890")
-    (yellow-faint "#b69961")
-    (blue "#8caaee")
-    (blue-warmer "#85c1dc")
-    (blue-cooler "#babbf1")
-    (blue-faint "#5b7ac0")
-    (magenta "#ca9ee6")
-    (magenta-warmer "#f4b8e4")
-    (magenta-cooler "#ca9ee6")
-    (magenta-faint "#9a6ab8")
-    (cyan "#99d1db")
-    (cyan-warmer "#81c8be")
-    (cyan-cooler "#85c1dc")
-    (cyan-faint "#6aa2ac")
-    (teal "#81c8be")
+    (red           "#e78284")  ;; base red
+    (red-warmer    "#ea999c")  ;; теплее, ближе к розовому
+    (red-cooler    "#d77d8c")  ;; холоднее, чуть более лавандово-розовый
+    (red-faint     "#f2c2c4")  ;; пастельный, светлый
+
+    (green         "#a6d189")  ;; base green (latte)
+    (green-warmer  "#b4e09b")  ;; теплее, желтоватее
+    (green-cooler  "#81c8be")  ;; холоднее, уходит в зелёно-бирюзовый
+    (green-faint   "#c7e8bc")  ;; пастельно-зелёный, мягкий
+
+    (yellow        "#e5c890")  ;; base yellow (latte)
+    (yellow-warmer "#ef9f76")  ;; теплее, оранжеватый
+    (yellow-cooler "#d4b87f")  ;; холоднее, меньше оранжевого, приглушённый
+    (yellow-faint  "#f0dfc3")  ;; пастельный кремовый
+
+    (blue          "#8caaee")  ;; base blue
+    (blue-warmer   "#85c1dc")  ;; теплее, ближе к sky-blue
+    (blue-cooler   "#babbf1")  ;; холоднее, более сиреневый
+    (blue-faint    "#cdd9f7")  ;; пастельный голубоватый
+
+    (magenta        "#ca9ee6") ;; base
+    (magenta-warmer "#f4b8e4") ;; теплее, pinkier
+    (magenta-cooler "#b18dd4") ;; холоднее, сиренево-пурпурный
+    (magenta-faint  "#e7d3f4") ;; пастельный
+
+    (cyan         "#99d1db")   ;; base cyan
+    (cyan-warmer  "#81c8be")   ;; теплее, бирюзовый
+    (cyan-cooler  "#85c1dc")   ;; холоднее, ближе к голубому
+    (cyan-faint   "#cfeaec")   ;; пастельный
+
+    (teal         "#81c8be")   ;; отдельный оттенок, уникальный
 
     (bg-red-intense "#664b58")
     (bg-green-intense "#53635a")
@@ -83,20 +89,20 @@
     (bg-magenta-subtle "#47435e")
     (bg-cyan-subtle "#3f4b5c")
 
-    (bg-added "#a6d189")
-    (bg-added-faint "#a6d189")
-    (bg-added-refine "#a6d189")
-    (fg-added "#303446")
+    (bg-added         "#51576d")
+    (bg-added-faint   "#414559")
+    (bg-added-refine  "#637d52")
+    (fg-added         "#a6d189")
 
-    (bg-changed "#e5c890")
-    (bg-changed-faint "#e5c890")
-    (bg-changed-refine "#e5c890")
-    (fg-changed "#303446")
+    (bg-changed        "#51576d")
+    (bg-changed-faint  "#414559")
+    (bg-changed-refine "#876f44")
+    (fg-changed        "#e5c890")
 
-    (bg-removed "#e78284")
-    (bg-removed-faint "#e78284")
-    (bg-removed-refine "#e78284")
-    (fg-removed "#303446")
+    (bg-removed        "#51576d")
+    (bg-removed-faint  "#414559")
+    (bg-removed-refine "#8a4e4f")
+    (fg-removed        "#e78284")
 
     ;; Unique colors needed for mappings
     (bg-mode-line-active-col "#51576d") ;; Surface1
@@ -300,10 +306,6 @@ further details)."
    nil
    (append modern-catppuccin-frappe-palette-mappings-partial modern-catppuccin-frappe-palette-common)))
 
-(defconst modern-catppuccin-frappe-custom-faces
-  '(`(magit-section-highlight ((,c :background ,bg-alt)))
-    `(magit-diff-file-heading-highlight ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
-
 (modus-themes-theme
  'modern-catppuccin-frappe
  'modern-catppuccin-frappe
@@ -311,8 +313,7 @@ further details)."
  'dark
  'modern-catppuccin-frappe-palette
  nil
- 'modern-catppuccin-frappe-palette-overrides
- 'modern-catppuccin-frappe-custom-faces)
+ 'modern-catppuccin-frappe-palette-overrides)
 
 (provide 'modern-catppuccin-frappe-theme)
 ;;; modern-catppuccin-frappe-theme.el ends here

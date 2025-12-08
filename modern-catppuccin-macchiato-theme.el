@@ -83,20 +83,20 @@
     (bg-magenta-subtle "#3c3956")
     (bg-cyan-subtle "#344153")
 
-    (bg-added "#a6da95")
-    (bg-added-faint "#a6da95")
-    (bg-added-refine "#a6da95")
-    (fg-added "#24273a")
+    (bg-added         "#494d64")
+    (bg-added-faint   "#363a4f")
+    (bg-added-refine  "#5e7a55")
+    (fg-added         "#a6da95")
 
-    (bg-changed "#eed49f")
-    (bg-changed-faint "#eed49f")
-    (bg-changed-refine "#eed49f")
-    (fg-changed "#24273a")
+    (bg-changed        "#494d64")
+    (bg-changed-faint  "#363a4f")
+    (bg-changed-refine "#7f6a45")
+    (fg-changed        "#eed49f")
 
-    (bg-removed "#ed8796")
-    (bg-removed-faint "#ed8796")
-    (bg-removed-refine "#ed8796")
-    (fg-removed "#24273a")
+    (bg-removed        "#494d64")
+    (bg-removed-faint  "#363a4f")
+    (bg-removed-refine "#8f5058")
+    (fg-removed        "#ed8796")
 
     ;; Unique colors needed for mappings
     (bg-mode-line-active-col "#494d64") ;; Surface1
