@@ -1,4 +1,4 @@
-;;; modern-catppuccin-macchiato-theme.el --- Catppuccin Macchiato theme port -*- lexical-binding:t -*-
+;;; modern-ayu-light-theme.el --- Ayu Light theme port -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Free Software Foundation, Inc.
 
@@ -24,96 +24,101 @@
 
 ;;; Commentary:
 ;;
-;; The `modern-catppuccin-macchiato' theme is a port of the Catppuccin Macchiato theme
+;; The `modern-ayu-light' theme is a port of the Ayu Light theme
 ;; to the `modus-themes' structure.
 
 ;;; Code:
 
 (require 'modus-themes)
 
-(defconst modern-catppuccin-macchiato-palette-partial
-  '((cursor "#f4dbd6")
-    (bg-main "#24273a")
-    (bg-dim "#181926")
-    (bg-alt "#363a4f")
-    (fg-main "#cad3f5")
-    (fg-dim "#6e738d")
-    (fg-alt "#b8c0e0")
-    (bg-active "#5b6078")
-    (bg-inactive "#1e2030")
-    (border "#6e738d")
+(defconst modern-ayu-light-palette-partial
+  '((cursor "#FFAA33")
+    (bg-main "#FCFCFC")
+    (bg-dim "#F8F9FA")
+    (bg-alt "#F3F4F5")
+    (fg-main "#5C6166")
+    (fg-dim "#8A9199")
+    (fg-alt "#FA8D3E")
+    (bg-active "#F3F4F5")
+    (bg-inactive "#F8F9FA")
+    (border "#E0E5E9")
 
-    (red "#ed8796")
-    (red-warmer "#ee99a0")
-    (red-cooler "#f0c6c6")
-    (red-faint "#be5867")
-    (green "#a6da95")
-    (green-warmer "#a6da95")
-    (green-cooler "#8bd5ca")
-    (green-faint "#78ab67")
-    (yellow "#eed49f")
-    (yellow-warmer "#f5a97f")
-    (yellow-cooler "#eed49f")
-    (yellow-faint "#c1a468")
-    (blue "#8aadf4")
-    (blue-warmer "#7dc4e4")
-    (blue-cooler "#b7bdf8")
-    (blue-faint "#577cc6")
-    (magenta "#c6a0f6")
-    (magenta-warmer "#f5bde6")
-    (magenta-cooler "#c6a0f6")
-    (magenta-faint "#9265cb")
-    (cyan "#91d7e3")
-    (cyan-warmer "#8bd5ca")
-    (cyan-cooler "#7dc4e4")
-    (cyan-faint "#62a8b4")
-    (teal "#8bd5ca")
+    (red           "#E65050")
+    (red-warmer    "#F06060")
+    (red-cooler    "#D64040")
+    (red-faint     "#C63030")
+    
+    (green         "#6CBF43")
+    (green-warmer  "#7CCF53")
+    (green-cooler  "#5CAF33")
+    (green-faint   "#4C9F23")
+    
+    (yellow        "#FFAA33")
+    (yellow-warmer "#FFBA43")
+    (yellow-cooler "#FF9A23")
+    (yellow-faint  "#E68A13")
+    
+    (blue          "#399EE6")
+    (blue-warmer   "#49AEF6")
+    (blue-cooler   "#2990D6")
+    (blue-faint    "#1982C6")
+    
+    (magenta        "#A37ACC")
+    (magenta-warmer "#B38ADC")
+    (magenta-cooler "#937ABC")
+    (magenta-faint  "#836AAC")
 
-    (bg-red-intense "#604355")
-    (bg-green-intense "#4b5c55")
-    (bg-yellow-intense "#605a58")
-    (bg-blue-intense "#424f71")
-    (bg-magenta-intense "#544b72")
-    (bg-cyan-intense "#445b6c")
+    (cyan        "#55B4D4")
+    (cyan-warmer "#65C4E4")
+    (cyan-cooler "#45A4C4")
+    (cyan-faint  "#3594B4")
+    (teal        "#4CBF99")
 
-    (bg-red-subtle "#423547")
-    (bg-green-subtle "#374147")
-    (bg-yellow-subtle "#424049")
-    (bg-blue-subtle "#333b55")
-    (bg-magenta-subtle "#3c3956")
-    (bg-cyan-subtle "#344153")
+    (bg-red-intense     "#FFEBEE")
+    (bg-green-intense   "#E8F5E8")
+    (bg-yellow-intense  "#FFF8E1")
+    (bg-blue-intense    "#E3F2FD")
+    (bg-magenta-intense "#F3E5F5")
+    (bg-cyan-intense    "#E0F2F1")
 
-    (bg-added         "#494d64")
-    (bg-added-faint   "#363a4f")
-    (bg-added-refine  "#5e7a55")
-    (fg-added         "#a6da95")
+    (bg-red-subtle     "#FFCDD2")
+    (bg-green-subtle   "#C8E6C9")
+    (bg-yellow-subtle  "#FFF9C4")
+    (bg-blue-subtle    "#BBDEFB")
+    (bg-magenta-subtle "#E1BEE7")
+    (bg-cyan-subtle    "#B2DFDB")
 
-    (bg-changed        "#494d64")
-    (bg-changed-faint  "#363a4f")
-    (bg-changed-refine "#7f6a45")
-    (fg-changed        "#eed49f")
+    
+    (bg-added         "#E8F5E8")
+    (bg-added-faint   "#F1F8E9")
+    (bg-added-refine  "#C8E6C9")
+    (fg-added         "#2E7D32")
 
-    (bg-removed        "#494d64")
-    (bg-removed-faint  "#363a4f")
-    (bg-removed-refine "#8f5058")
-    (fg-removed        "#ed8796")
+    (bg-changed        "#E3F2FD")
+    (bg-changed-faint  "#E8F4FD")
+    (bg-changed-refine "#BBDEFB")
+    (fg-changed        "#1565C0")
 
-    ;; Unique colors needed for mappings
-    (bg-mode-line-active-col "#494d64") ;; Surface1
-    (bg-hover-col "#5b6078") ;; Surface2
-    (bg-hover-secondary-col "#494d64") ;; Surface1
-    (bg-paren-match-col "#6e738d") ;; Overlay0
-    (fg-heading-0-col "#ed8796") ;; Red
-    (fg-heading-1-col "#f5a97f") ;; Peach
-    (fg-heading-2-col "#eed49f") ;; Yellow
-    (fg-heading-3-col "#a6da95") ;; Green
-    (fg-heading-4-col "#7dc4e4") ;; Sapphire
-    (fg-heading-5-col "#8aadf4") ;; Blue
-    (fg-heading-6-col "#b7bdf8") ;; Lavender
-    (fg-heading-7-col "#c6a0f6") ;; Mauve
-    (fg-heading-8-col "#f5bde6"))) ;; Pink
+    (bg-removed        "#FFEBEE")
+    (bg-removed-faint  "#FFCDD2")
+    (bg-removed-refine "#EF5350")
+    (fg-removed        "#C62828")
 
-(defconst modern-catppuccin-macchiato-palette-common
+    
+    (bg-mode-line-active-col "#F3F4F5")
+    (bg-hover                "#F8F9FA")
+    (bg-hover-secondary-col  "#F3F4F5")
+    (fg-heading-0-col "#E65050")
+    (fg-heading-1-col "#FFAA33")
+    (fg-heading-2-col "#FA8D3E")
+    (fg-heading-3-col "#6CBF43")
+    (fg-heading-4-col "#55B4D4")
+    (fg-heading-5-col "#399EE6")
+    (fg-heading-6-col "#49AEF6")
+    (fg-heading-7-col "#A37ACC")
+    (fg-heading-8-col "#B38ADC")))
+
+(defconst modern-ayu-light-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
 
@@ -183,18 +188,18 @@
     (fg-heading-7 rainbow-7)
     (fg-heading-8 rainbow-8)))
 
-(defconst modern-catppuccin-macchiato-palette-mappings-partial
-  '((err red)
-    (warning yellow)
-    (info blue)
+(defconst modern-ayu-light-palette-mappings-partial
+  '((err red-warmer)
+    (warning fg-main)
+    (info blue-warmer)
 
     (bg-mode-line-active bg-mode-line-active-col)
     (fg-mode-line-active fg-main)
 
-    (bg-completion bg-dim)
-    (bg-hover bg-hover-col)
+    (bg-completion bg-alt)
     (bg-hover-secondary bg-hover-secondary-col)
     (bg-hl-line bg-dim)
+    (fg-paren-match yellow-warmer)
     (bg-paren-match bg-main)
     (bg-err bg-main)
     (bg-warning bg-main)
@@ -263,8 +268,10 @@
 
     (bg-search-static bg-warning)
     (bg-search-current yellow)
-    (bg-search-lazy blue)
+    (bg-search-lazy blue-cooler)
+    (fg-search-lazy bg-main)
     (bg-search-replace red)
+    (fg-search-replace bg-main)
 
     (bg-search-rx-group-0 magenta)
     (bg-search-rx-group-1 green)
@@ -281,8 +288,8 @@
     (rainbow-7 fg-heading-7-col)
     (rainbow-8 fg-heading-8-col)))
 
-(defcustom modern-catppuccin-macchiato-palette-overrides nil
-  "Overrides for `modern-catppuccin-macchiato-palette'.
+(defcustom modern-ayu-light-palette-overrides nil
+  "Overrides for `modern-ayu-light-palette'.
 
 Mirror the elements of the aforementioned palette, overriding
 their value.
@@ -290,29 +297,32 @@ their value.
 To preview the palette entries, use `modus-themes-preview-colors' or
 `modus-themes-preview-colors-current' (read the documentation for
 further details)."
-  :group 'modern-catppuccin-macchiato
+  :group 'modern-ayu-light
   :type '(repeat (list symbol (choice symbol string))))
 
-(defconst modern-catppuccin-macchiato-palette
+(defconst modern-ayu-light-palette
   (modus-themes-generate-palette
-   modern-catppuccin-macchiato-palette-partial
+   modern-ayu-light-palette-partial
    nil
    nil
-   (append modern-catppuccin-macchiato-palette-mappings-partial modern-catppuccin-macchiato-palette-common)))
+   (append modern-ayu-light-palette-mappings-partial
+           modern-ayu-light-palette-common)))
 
-(defconst modern-catppuccin-macchiato-custom-faces
-  '(`(magit-section-highlight ((,c :background ,bg-alt)))
-    `(magit-diff-file-heading-highlight ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
+(defconst modern-ayu-light-custom-faces
+  '(`(magit-section-highlight
+      ((,c :background ,bg-main)))
+    `(magit-diff-file-heading-highlight
+      ((,c :inherit magit-diff-file-heading :background ,bg-main)))))
 
 (modus-themes-theme
- 'modern-catppuccin-macchiato
- 'modern-catppuccin-macchiato
- "Catppuccin Macchiato theme port."
- 'dark
- 'modern-catppuccin-macchiato-palette
+ 'modern-ayu-light
+ 'modern-ayu-light
+ "Ayu Light theme port."
+ 'light
+ 'modern-ayu-light-palette
  nil
- 'modern-catppuccin-macchiato-palette-overrides
- 'modern-catppuccin-macchiato-custom-faces)
+ 'modern-ayu-light-palette-overrides
+ 'modern-ayu-light-custom-faces)
 
-(provide 'modern-catppuccin-macchiato-theme)
-;;; modern-catppuccin-macchiato-theme.el ends here
+(provide 'modern-ayu-light-theme)
+;;; modern-ayu-light-theme.el ends here

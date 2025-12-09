@@ -114,7 +114,7 @@
     (bg-hover bg-hover-col)
     (bg-hover-secondary bg-hover-secondary-col)
     (bg-hl-line bg-dim)
-    (bg-paren-match bg-paren-match-col)
+    (bg-paren-match bg-main)
     (bg-region bg-active)
 
     (fg-link cyan)

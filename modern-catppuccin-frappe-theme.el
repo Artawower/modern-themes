@@ -37,43 +37,43 @@
     (bg-dim "#232634")
     (bg-alt "#414559")
     (fg-main "#c6d0f5")
-    (fg-dim "#a5adce")
+    (fg-dim "#737994")
     (fg-alt "#b5bfe2")
     (bg-active "#626880")
     (bg-inactive "#292c3c")
     (border "#737994")
 
-    (red           "#e78284")  ;; base red
-    (red-warmer    "#ea999c")  ;; теплее, ближе к розовому
-    (red-cooler    "#d77d8c")  ;; холоднее, чуть более лавандово-розовый
-    (red-faint     "#f2c2c4")  ;; пастельный, светлый
+    (red           "#e78284")  
+    (red-warmer    "#ea999c")  
+    (red-cooler    "#d77d8c")  
+    (red-faint     "#f2c2c4")  
 
-    (green         "#a6d189")  ;; base green (latte)
-    (green-warmer  "#b4e09b")  ;; теплее, желтоватее
-    (green-cooler  "#81c8be")  ;; холоднее, уходит в зелёно-бирюзовый
-    (green-faint   "#c7e8bc")  ;; пастельно-зелёный, мягкий
+    (green         "#a6d189")  
+    (green-warmer  "#b4e09b")  
+    (green-cooler  "#81c8be")  
+    (green-faint   "#c7e8bc")  
 
-    (yellow        "#e5c890")  ;; base yellow (latte)
-    (yellow-warmer "#ef9f76")  ;; теплее, оранжеватый
-    (yellow-cooler "#d4b87f")  ;; холоднее, меньше оранжевого, приглушённый
-    (yellow-faint  "#f0dfc3")  ;; пастельный кремовый
+    (yellow        "#e5c890")  
+    (yellow-warmer "#ef9f76")  
+    (yellow-cooler "#d4b87f")  
+    (yellow-faint  "#f0dfc3")  
 
-    (blue          "#8caaee")  ;; base blue
-    (blue-warmer   "#85c1dc")  ;; теплее, ближе к sky-blue
-    (blue-cooler   "#babbf1")  ;; холоднее, более сиреневый
-    (blue-faint    "#cdd9f7")  ;; пастельный голубоватый
+    (blue          "#8caaee")  
+    (blue-warmer   "#85c1dc")  
+    (blue-cooler   "#babbf1")  
+    (blue-faint    "#cdd9f7")  
 
-    (magenta        "#ca9ee6") ;; base
-    (magenta-warmer "#f4b8e4") ;; теплее, pinkier
-    (magenta-cooler "#b18dd4") ;; холоднее, сиренево-пурпурный
-    (magenta-faint  "#e7d3f4") ;; пастельный
+    (magenta        "#ca9ee6") 
+    (magenta-warmer "#f4b8e4") 
+    (magenta-cooler "#b18dd4") 
+    (magenta-faint  "#e7d3f4") 
 
-    (cyan         "#99d1db")   ;; base cyan
-    (cyan-warmer  "#81c8be")   ;; теплее, бирюзовый
-    (cyan-cooler  "#85c1dc")   ;; холоднее, ближе к голубому
-    (cyan-faint   "#cfeaec")   ;; пастельный
+    (cyan         "#99d1db")   
+    (cyan-warmer  "#81c8be")   
+    (cyan-cooler  "#85c1dc")   
+    (cyan-faint   "#cfeaec")   
 
-    (teal         "#81c8be")   ;; отдельный оттенок, уникальный
+    (teal         "#81c8be")   
 
     (bg-red-intense "#664b58")
     (bg-green-intense "#53635a")
@@ -104,20 +104,20 @@
     (bg-removed-refine "#8a4e4f")
     (fg-removed        "#e78284")
 
-    ;; Unique colors needed for mappings
-    (bg-mode-line-active-col "#51576d") ;; Surface1
-    (bg-hover-col "#626880") ;; Surface2
-    (bg-hover-secondary-col "#51576d") ;; Surface1
-    (bg-paren-match-col "#737994") ;; Overlay0
-    (fg-heading-0-col "#e78284") ;; Red
-    (fg-heading-1-col "#ef9f76") ;; Peach
-    (fg-heading-2-col "#e5c890") ;; Yellow
-    (fg-heading-3-col "#a6d189") ;; Green
-    (fg-heading-4-col "#85c1dc") ;; Sapphire
-    (fg-heading-5-col "#8caaee") ;; Blue
-    (fg-heading-6-col "#babbf1") ;; Lavender
-    (fg-heading-7-col "#ca9ee6") ;; Mauve
-    (fg-heading-8-col "#f4b8e4"))) ;; Pink
+    
+    (bg-mode-line-active-col "#51576d") 
+    (bg-hover-col "#626880") 
+    (bg-hover-secondary-col "#51576d") 
+    (bg-paren-match-col "#737994") 
+    (fg-heading-0-col "#e78284") 
+    (fg-heading-1-col "#ef9f76") 
+    (fg-heading-2-col "#e5c890") 
+    (fg-heading-3-col "#a6d189") 
+    (fg-heading-4-col "#85c1dc") 
+    (fg-heading-5-col "#8caaee") 
+    (fg-heading-6-col "#babbf1") 
+    (fg-heading-7-col "#ca9ee6") 
+    (fg-heading-8-col "#f4b8e4"))) 
 
 (defconst modern-catppuccin-frappe-palette-common
   '((fringe unspecified)
@@ -164,7 +164,7 @@
     (bg-mark-other bg-warning)
     (fg-mark-other warning)
 
-    (fg-search-current fg-main)
+    (fg-search-current bg-main)
     (fg-search-lazy fg-main)
     (fg-search-static fg-main)
     (fg-search-replace fg-main)
@@ -201,10 +201,10 @@
     (bg-hover bg-hover-col)
     (bg-hover-secondary bg-hover-secondary-col)
     (bg-hl-line bg-dim)
-    (bg-paren-match bg-paren-match-col)
-    (bg-err red)
-    (bg-warning yellow)
-    (bg-info blue)
+    (bg-paren-match bg-main)
+    (bg-err bg-main)
+    (bg-warning bg-main)
+    (bg-info bg-main)
     (bg-region bg-active)
 
     (fg-link blue)
