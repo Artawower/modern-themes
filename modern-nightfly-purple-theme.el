@@ -140,7 +140,7 @@
     (bg-completion bg-active)
     (bg-hover-secondary bg-alt)
     (bg-hl-line bg-alt)
-    (bg-paren-match bg-active)
+    (bg-paren-match bg-main)
     (bg-region bg-active)
 
     ;; Syntax

@@ -44,7 +44,9 @@
 ;; - `modern-catppuccin-mocha` (dark): Catppuccin Mocha theme port
 ;; - `modern-github-light` (light): GitHub Light theme port
 ;; - `modern-github-dark` (dark): GitHub Dark theme port
-;; - `modern-nightfly-purple-theme (dark): Nightfly Purple theme port'
+;; - `modern-nightfly-purple (dark): Nightfly Purple theme port'
+;; - `modern-helix (dark): Helix theme port'
+;; - `modern-liac-dark (dark): Liac Dark theme port'
 ;;
 ;; Usage:
 ;;   (require 'modern-themes)
@@ -72,6 +74,7 @@ The `modern-themes' are built on top of the `modus-themes'."
     modern-zaiste
     modern-nano-light
     modern-catppuccin-latte
+    modern-ayu-light
     modern-github-light)
   "List of symbols with the light Modern themes.")
 
@@ -83,8 +86,12 @@ The `modern-themes' are built on top of the `modus-themes'."
     modern-catppuccin-frappe
     modern-catppuccin-macchiato
     modern-catppuccin-mocha
+    modern-liac-dark
     modern-github-dark
-    modern-nightfly-purple-theme)
+    modern-nightfly-purple
+    modern-ayu-dark
+    modern-ayu-mirage
+    modern-helix)
   "List of symbols with the dark Modern themes.")
 
 (defconst modern-themes-items
@@ -98,6 +105,32 @@ The `modern-themes' are built on top of the `modus-themes'."
   (let ((dir (file-name-directory load-file-name)))
     (unless (file-equal-p dir (expand-file-name "themes/" data-directory))
       (add-to-list 'custom-theme-load-path dir))))
+
+(defun modern-themes--load-random-from (list)
+  "Helper: pick and load a random theme from LIST."
+  (let* ((theme (nth (random (length list)) list)))
+    (mapc #'disable-theme custom-enabled-themes)
+    (load-theme theme t)
+    (message "Modern Themes: loaded random theme `%s`" theme)
+    theme))
+
+;;;###autoload
+(defun modern-themes-random ()
+  "Load a random Modern theme (light or dark)."
+  (interactive)
+  (modern-themes--load-random-from modern-themes-items))
+
+;;;###autoload
+(defun modern-themes-random-dark ()
+  "Load a random dark Modern theme."
+  (interactive)
+  (modern-themes--load-random-from modern-themes-dark-themes))
+
+;;;###autoload
+(defun modern-themes-random-light ()
+  "Load a random light Modern theme."
+  (interactive)
+  (modern-themes--load-random-from modern-themes-light-themes))
 
 (provide 'modern-themes)
 ;;; modern-themes.el ends here

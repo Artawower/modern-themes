@@ -127,7 +127,7 @@
     (bg-hover bg-hover-col)
     (bg-hover-secondary bg-hover-secondary-col)
     (bg-hl-line bg-dim)
-    (bg-paren-match bg-paren-match-col)
+    (bg-paren-match bg-main)
     (bg-region bg-active)
 
     (fg-link blue)
@@ -137,12 +137,17 @@
     (comment fg-dim)
     (constant blue)
     (fnname magenta)
+    (fnname-call magenta-warmer)
     (keyword red)
     (preprocessor red)
     (docstring fg-dim)
     (string blue-cooler)
     (type red)
-    (variable fg-main)
+    (variable magenta)
+    (property fg-main)
+
+    (fg-prompt blue-warmer)
+    (fg-prose-code magenta-warmer)
 
     (bg-added          bg-added)
     (bg-added-faint    bg-added-faint)

@@ -37,7 +37,7 @@
     (bg-dim "#1f2335")
     (bg-alt "#1f2335")
     (fg-main "#c0caf5")
-    (fg-dim "#a9b1d6")
+    (fg-dim "#6c6e75")
     (fg-alt "#a9b1d6")
     (bg-active "#3f444a")
     (bg-inactive "#24283b")
@@ -83,20 +83,20 @@
     (bg-magenta-subtle "#facdf5")
     (bg-cyan-subtle "#c2ecf0")
 
-    (bg-added "#caf4da")
-    (bg-added-faint "#dff6ea")
-    (bg-added-refine "#bae9cf")
-    (fg-added "#005000")
+    (bg-added "#283B4D")
+    (bg-added-faint "#1f2d3a")
+    (bg-added-refine "#335066")
+    (fg-added "#9ece6a")
 
-    (bg-changed "#ffdfb9")
-    (bg-changed-faint "#ffefcb")
-    (bg-changed-refine "#ffcfa0")
-    (fg-changed "#553d00")
+    (bg-removed "#3F2D3D")
+    (bg-removed-faint "#2e212d")
+    (bg-removed-refine "#523647")
+    (fg-removed "#f7768e")
 
-    (bg-removed "#ffcee0")
-    (bg-removed-faint "#ffdfe6")
-    (bg-removed-refine "#f5b6c8")
-    (fg-removed "#8f1313")
+    (bg-changed "#3E2E1E")
+    (bg-changed-faint "#2e2118")
+    (bg-changed-refine "#4d3a28")
+    (fg-changed "#e0af68")
 
     (bg-mode-line-active "#1c4a6e")
     (fg-mode-line-active "#c0caf5")
@@ -105,10 +105,6 @@
     (bg-hover "#3f444a")
     (bg-hover-secondary "#3f444a")
     (bg-hl-line "#1f2335")
-    (bg-paren-match "#3f444a")
-    (bg-err "#f7768e")
-    (bg-warning "#e0af68")
-    (bg-info "#7aa2f7")
     (bg-region "#3f444a")))
 
 (defconst modern-tokyo-palette-common
@@ -116,6 +112,8 @@
     (fg-region unspecified)
 
     (bg-diff-context bg-dim)
+    (bg-diff-focus bg-dim)
+    (bg-diff-text bg-active)
 
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)
@@ -156,7 +154,7 @@
     (bg-mark-other bg-warning)
     (fg-mark-other warning)
 
-    (fg-search-current fg-main)
+    (fg-search-current bg-main)
     (fg-search-lazy fg-main)
     (fg-search-static fg-main)
     (fg-search-replace fg-main)
@@ -204,6 +202,7 @@
     (string green)
     (type yellow)
     (variable red)
+    (property blue)
     (variable-use red)
     (rx-backslash cyan)
     (rx-construct red)
@@ -254,6 +253,12 @@
     (bg-search-rx-group-1 bg-green-intense)
     (bg-search-rx-group-2 bg-red-subtle)
     (bg-search-rx-group-3 bg-cyan-subtle)
+
+    (bg-paren-match bg-main)
+    (bg-err bg-main)
+    (bg-warning bg-main)
+    (bg-info bg-main)
+
 
     (rainbow-0 magenta)
     (rainbow-1 magenta)

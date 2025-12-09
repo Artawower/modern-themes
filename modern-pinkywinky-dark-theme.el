@@ -29,92 +29,80 @@
 
 ;;; Code:
 
+;;; modern-pinkywinky-dark-theme.el --- Pinky Winky Dark port -*- lexical-binding:t -*-
+
 (require 'modus-themes)
 
 (defconst modern-pinkywinky-dark-palette-partial
   '((cursor "#00AEE8")
-    (bg-main "#24283b")
-    (bg-dim "#1f2335")
-    (bg-alt "#1f2335")
-    (fg-main "#c0caf5")
-    (fg-dim "#a9b1d6")
-    (fg-alt "#a9b1d6")
-    (bg-active "#3f444a")
-    (bg-inactive "#24283b")
-    (border "#5B6268")
 
-    (red "#FEAFE0")
-    (red-warmer "#FF96CC")
-    (red-cooler "#EA97F0")
-    (red-faint "#c24552")
-    (green "#8bcd5b")
-    (green-warmer "#4a7d00")
-    (green-cooler "#007f68")
-    (green-faint "#61756c")
-    (yellow "#ECBE7B")
+    (bg-main      "#24283b")
+    (bg-dim       "#1f2335")
+    (bg-alt       "#1f2335")
+    (fg-main      "#c0caf5")
+    (fg-dim       "#a9b1d6")
+    (fg-alt       "#a9b1d6")
+    (bg-active    "#3f444a")
+    (bg-inactive  "#24283b")
+    (border       "#5b6268")
+
+    (red           "#FEAFE0")
+    (red-warmer    "#FF96CC")
+    (red-cooler    "#EA97F0")
+    (red-faint     "#c24552")
+
+    (green         "#8bcd5b")
+    (green-warmer  "#4a7d00")
+    (green-cooler  "#007f68")
+    (green-faint   "#61756c")
+
+    (yellow        "#ECBE7B")
     (yellow-warmer "#b6532f")
     (yellow-cooler "#b65050")
-    (yellow-faint "#9a5f6a")
-    (blue "#4FC3F7")
-    (blue-warmer "#5250ef")
-    (blue-cooler "#065fff")
-    (blue-faint "#6060d0")
-    (magenta "#ee7ae9")
+    (yellow-faint  "#9a5f6a")
+
+    (blue          "#4FC3F7")
+    (blue-warmer   "#5250ef")
+    (blue-cooler   "#065fff")
+    (blue-faint    "#6060d0")
+
+    (magenta        "#ee7ae9")
     (magenta-warmer "#E4CCFF")
     (magenta-cooler "#8e44f3")
-    (magenta-faint "#a45392")
-    (cyan "#00CED1")
+    (magenta-faint  "#a45392")
+
+    (cyan        "#00CED1")
     (cyan-warmer "#3f6faf")
     (cyan-cooler "#0f7b8f")
-    (cyan-faint "#5f60bf")
+    (cyan-faint  "#5f60bf")
+
     (teal "#4db5bd")
 
-    (bg-red-intense "#ff7f88")
-    (bg-green-intense "#86df80")
-    (bg-yellow-intense "#ffc200")
-    (bg-blue-intense "#cbcfff")
-    (bg-magenta-intense "#df8fff")
-    (bg-cyan-intense "#88ccff")
+    ;; Diff (dark, readable)
+    (bg-added         "#1e3524")
+    (bg-added-faint   "#162a1c")
+    (bg-added-refine  "#2b4a33")
+    (fg-added         "#8bcd5b")
 
-    (bg-red-subtle "#fbc3cf")
-    (bg-green-subtle "#b9edca")
-    (bg-yellow-subtle "#f7e78f")
-    (bg-blue-subtle "#ccdfff")
-    (bg-magenta-subtle "#facdf5")
-    (bg-cyan-subtle "#c2ecf0")
+    (bg-changed        "#3a2f1e")
+    (bg-changed-faint  "#2a2316")
+    (bg-changed-refine "#4b3d27")
+    (fg-changed        "#ECBE7B")
 
-    (bg-added "#caf4da")
-    (bg-added-faint "#dff6ea")
-    (bg-added-refine "#bae9cf")
-    (fg-added "#005000")
-
-    (bg-changed "#ffdfb9")
-    (bg-changed-faint "#ffefcb")
-    (bg-changed-refine "#ffcfa0")
-    (fg-changed "#553d00")
-
-    (bg-removed "#ffcee0")
-    (bg-removed-faint "#ffdfe6")
-    (bg-removed-refine "#f5b6c8")
-    (fg-removed "#8f1313")
-
-    ;; Special named colors
-    (bg-completion-col "#f4cfff")
-    (bg-hover-col "#b4cfff")
-    (bg-hover-sec-col "#aaeccf")
-    (bg-paren-col "#9fc0ef")
-    (bg-err-col "#ffd0e6")
-    (bg-warn-col "#ffe5ba")
-    (bg-info-col "#bbefda")
-    (bg-region-col "#eecfff")
-
-    (bg-region-col "#eecfff")))
+    (bg-removed        "#3b1f2a")
+    (bg-removed-faint  "#2a1620")
+    (bg-removed-refine "#512a38")
+    (fg-removed        "#FEAFE0")
+    ))
 
 (defconst modern-pinkywinky-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
 
+    ;; Diff defaults for Modus
     (bg-diff-context bg-dim)
+    (bg-diff-focus   bg-alt)
+    (bg-diff-text    bg-active)
 
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)
@@ -155,6 +143,7 @@
     (bg-mark-other bg-warning)
     (fg-mark-other warning)
 
+    ;; Search
     (fg-search-current fg-main)
     (fg-search-lazy fg-main)
     (fg-search-static fg-main)
@@ -165,11 +154,13 @@
     (fg-search-rx-group-2 fg-main)
     (fg-search-rx-group-3 fg-main)
 
+    ;; Completion
     (fg-completion-match-0 accent-0)
     (fg-completion-match-1 accent-1)
     (fg-completion-match-2 accent-2)
     (fg-completion-match-3 accent-3)
 
+    ;; Headings rainbow
     (fg-heading-0 rainbow-0)
     (fg-heading-1 rainbow-1)
     (fg-heading-2 rainbow-2)
@@ -188,87 +179,34 @@
     (bg-mode-line-active bg-active)
     (fg-mode-line-active fg-main)
 
-    (bg-completion bg-completion-col)
-    (bg-hover bg-hover-col)
-    (bg-hover-secondary bg-hover-sec-col)
+    (bg-completion magenta-faint)
+    (bg-hover bg-alt)
+    (bg-hover-secondary bg-active)
     (bg-hl-line bg-dim)
-    (bg-paren-match bg-paren-col)
-    (bg-err bg-err-col)
-    (bg-warning bg-warn-col)
-    (bg-info bg-info-col)
-    (bg-region bg-region-col)
+    (bg-paren-match bg-main)
+    (bg-err bg-main)
+    (bg-warning bg-main)
+    (bg-info bg-main)
+    (bg-region bg-active)
 
-    (fg-link blue)
-    (fg-link-visited green-cooler)
-    (name red-warmer)
-    (keybind red-cooler)
-    (identifier red-warmer)
-    (fg-prompt magenta-warmer)
-
-    (builtin blue)
+    ;; Syntax
     (comment fg-dim)
+    (string magenta-warmer)
+    (builtin blue)
     (constant fg-main)
     (fnname blue)
-    (fnname-call red-warmer)
+    (fnname-call blue)
     (keyword magenta)
     (preprocessor blue)
-    (docstring cyan-faint)
-    (string magenta-warmer)
+    (docstring fg-dim)
     (type magenta-warmer)
-    ;; (function blue)
     (variable fg-main)
-    (property fg-main)
     (variable-use fg-main)
+    (property fg-main)
     (rx-backslash cyan-cooler)
     (rx-construct red-cooler)
 
-    (accent-0 magenta)
-    (accent-1 yellow)
-    (accent-2 blue)
-    (accent-3 red)
-
-    (date-common cyan-cooler)
-    (date-deadline red-warmer)
-    (date-deadline-subtle red-faint)
-    (date-event fg-alt)
-    (date-holiday magenta-warmer)
-    (date-now fg-main)
-    (date-range fg-alt)
-    (date-scheduled yellow)
-    (date-scheduled-subtle yellow-faint)
-    (date-weekday cyan)
-    (date-weekend red-faint)
-
-    (fg-prose-code yellow)
-    (prose-done green-cooler)
-    (fg-prose-macro cyan-cooler)
-    (prose-metadata fg-dim)
-    (prose-metadata-value fg-alt)
-    (prose-table fg-alt)
-    (prose-table-formula info)
-    (prose-tag yellow-faint)
-    (prose-todo red-warmer)
-    (fg-prose-verbatim magenta-cooler)
-
-    (mail-cite-0 yellow-cooler)
-    (mail-cite-1 magenta)
-    (mail-cite-2 blue-warmer)
-    (mail-cite-3 cyan-warmer)
-    (mail-part magenta-faint)
-    (mail-recipient magenta-warmer)
-    (mail-subject magenta-cooler)
-    (mail-other magenta)
-
-    (bg-search-static bg-warning)
-    (bg-search-current bg-yellow-intense)
-    (bg-search-lazy bg-blue-intense)
-    (bg-search-replace bg-red-intense)
-
-    (bg-search-rx-group-0 bg-magenta-intense)
-    (bg-search-rx-group-1 bg-green-intense)
-    (bg-search-rx-group-2 bg-red-subtle)
-    (bg-search-rx-group-3 bg-cyan-subtle)
-
+    ;; Rainbow headings
     (rainbow-0 magenta-warmer)
     (rainbow-1 magenta-cooler)
     (rainbow-2 yellow)
@@ -280,23 +218,16 @@
     (rainbow-8 yellow-cooler)))
 
 (defcustom modern-pinkywinky-dark-palette-overrides nil
-  "Overrides for `modern-pinkywinky-dark-palette'.
-
-Mirror the elements of the aforementioned palette, overriding
-their value.
-
-To preview the palette entries, use `modus-themes-preview-colors' or
-`modus-themes-preview-colors-current' (read the documentation for
-further details)."
+  "Overrides for `modern-pinkywinky-dark-palette'."
   :group 'modern-pinkywinky-dark
   :type '(repeat (list symbol (choice symbol string))))
 
 (defconst modern-pinkywinky-dark-palette
   (modus-themes-generate-palette
    modern-pinkywinky-dark-palette-partial
-   nil
-   nil
-   (append modern-pinkywinky-dark-palette-mappings-partial modern-pinkywinky-dark-palette-common)))
+   nil nil
+   (append modern-pinkywinky-dark-palette-mappings-partial
+           modern-pinkywinky-dark-palette-common)))
 
 (defconst modern-pinkywinky-dark-custom-faces
   '(`(magit-section-highlight ((,c :background ,bg-alt)))
@@ -305,7 +236,7 @@ further details)."
 (modus-themes-theme
  'modern-pinkywinky-dark
  'modern-pinkywinky-dark
- "Legible dark theme inspired by Pinky Winky."
+ "Pinky Winky Dark theme."
  'dark
  'modern-pinkywinky-dark-palette
  nil
@@ -313,4 +244,5 @@ further details)."
  'modern-pinkywinky-dark-custom-faces)
 
 (provide 'modern-pinkywinky-dark-theme)
+
 ;;; modern-pinkywinky-dark-theme.el ends here

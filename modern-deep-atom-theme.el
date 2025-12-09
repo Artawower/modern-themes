@@ -107,6 +107,9 @@
     (fg-region unspecified)
 
     (bg-diff-context bg-dim)
+    (bg-diff-focus bg-dim)
+    (bg-diff-text bg-active)
+    (bg-diff-context bg-dim)
 
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)
@@ -170,10 +173,10 @@
     (bg-completion bg-active)
     (bg-hover-secondary bg-active)
     (bg-hl-line bg-dim)
-    (bg-paren-match bg-active)
-    (bg-err red)
-    (bg-warning yellow)
-    (bg-info blue)
+    (bg-paren-match bg-main)
+    (bg-err bg-main)
+    (bg-warning bg-main)
+    (bg-info bg-main)
     (bg-region bg-active)
 
     (fg-link blue)
@@ -194,6 +197,7 @@
     (string green)
     (type yellow)
     (variable red)
+    (property blue)
     (variable-use red)
     (rx-backslash cyan)
     (rx-construct red)
