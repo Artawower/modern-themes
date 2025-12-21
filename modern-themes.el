@@ -55,6 +55,7 @@
 ;;; Code:
 
 (require 'modus-themes)
+(require 'seq)
 
 ;;;; Customization group
 
@@ -107,8 +108,14 @@ The `modern-themes' are built on top of the `modus-themes'."
       (add-to-list 'custom-theme-load-path dir))))
 
 (defun modern-themes--load-random-from (list)
-  "Helper: pick and load a random theme from LIST."
-  (let* ((theme (nth (random (length list)) list)))
+  "Helper: pick and load a random theme from LIST.
+Ensures the selected theme is not currently active."
+  (let* ((active-themes custom-enabled-themes)
+         ;; Filter out any theme that is currently active (enabled)
+         (candidates (seq-remove (lambda (theme) (memq theme active-themes)) list))
+         ;; If all themes are active (unlikely), fallback to the full list to avoid errors
+         (final-list (if candidates candidates list))
+         (theme (nth (random (length final-list)) final-list)))
     (mapc #'disable-theme custom-enabled-themes)
     (load-theme theme t)
     (message "Modern Themes: loaded random theme `%s`" theme)
