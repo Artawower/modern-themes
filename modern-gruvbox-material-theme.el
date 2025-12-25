@@ -1,4 +1,4 @@
-;;; modern-deep-atom-theme.el --- Deep Atom theme port -*- lexical-binding:t -*-
+;;; modern-gruvbox-material-theme.el --- Modern Gruvbox Material theme port. -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Free Software Foundation, Inc.
 
@@ -24,133 +24,134 @@
 
 ;;; Commentary:
 ;;
-;; The `modern-deep-atom' theme is a port of the Deep Atom theme
-;; to the `modus-themes' structure.
+;; The `modern-gruvbox-material' theme is a port based on modus-themes structure.
 
 ;;; Code:
 
 (require 'modus-themes)
 
-(defconst modern-deep-atom-palette-partial
-  '((cursor "#41a7fc")
-    (bg-main "#1a212e")
-    (bg-dim "#141b24")
-    (bg-alt "#141b24")
-    (fg-main "#a5b0c5")
-    (fg-dim "#5B6268")
-    (fg-alt "#5B6268")
-    (bg-active "#24283B")
-    (bg-inactive "#1a212e")
-    (border "#24283B")
+(defconst modern-gruvbox-material-palette-partial
+  '((cursor "#7aa2f7")
+    (bg-active "#202020")
+    (bg-added "#383432")
+    (bg-added-faint "#383432")
+    (bg-added-refine "#404331")
+    (bg-alt "#383432")
+    (bg-blue-intense "#c4dad5")
+    (bg-blue-subtle "#e3e5e5")
+    (bg-changed "#383432")
+    (bg-changed-faint "#383432")
+    (bg-changed-refine "#433c31")
+    (bg-completion "#424141")
+    (bg-cyan-intense "#bed5ba")
+    (bg-cyan-subtle "#dfe2df")
+    (bg-dim "#383432")
+    (bg-green-intense "#cfd6aa")
+    (bg-green-subtle "#e0e2d7")
+    (bg-hl-line "#383432")
+    (bg-hover "#424141")
+    (bg-hover-secondary "#424141")
+    (bg-inactive "#292828")
+    (bg-magenta-intense "#e9c2cd")
+    (bg-magenta-subtle "#ecdfe3")
+    (bg-main "#292828")
+    (bg-mode-line-active "#3e4946")
+    (bg-orange-intense "#f1be9e")
+    (bg-orange-subtle "#f1ddd0")
+    (bg-red-intense "#f4b3b0")
+    (bg-red-subtle "#f5dddc")
+    (bg-removed "#383432")
+    (bg-removed-faint "#383432")
+    (bg-removed-refine "#433231")
+    (bg-yellow-intense "#e7c99a")
+    (bg-yellow-subtle "#eadecb")
+    (blue "#7DAEA3")
+    (blue-cooler "#7dae9e")
+    (blue-faint "#86918e")
+    (blue-warmer "#7daea7")
+    (border "#494848")
+    (cyan "#89B482")
+    (cyan-cooler "#8db482")
+    (cyan-faint "#8b9789")
+    (cyan-warmer "#84b482")
+    (fg-added "#A8B665")
+    (fg-alt "#CCB692")
+    (fg-changed "#D8A658")
+    (fg-dim "#7C6F64")
+    (fg-main "#D4BE98")
+    (fg-mode-line-active "#D4BE98")
+    (fg-removed "#EA6962")
+    (green "#A8B665")
+    (green-cooler "#aeb664")
+    (green-faint "#919770")
+    (green-warmer "#a1b664")
+    (magenta "#D3859B")
+    (magenta-cooler "#d385a1")
+    (magenta-faint "#b78996")
+    (magenta-warmer "#d38594")
+    (orange "#E78A4F")
+    (orange-cooler "#e67d4f")
+    (orange-faint "#c78459")
+    (orange-warmer "#e6964f")
+    (red "#EA6962")
+    (red-cooler "#e96266")
+    (red-faint "#cc6e69")
+    (red-warmer "#e97462")
+    (teal "#93b477")
+    (yellow "#D8A658")
+    (yellow-cooler "#d89b57")
+    (yellow-faint "#b89763")
+    (yellow-warmer "#d8b057")))
 
-    (red           "#f65866")
-    (red-warmer    "#ff6f7a")
-    (red-cooler    "#e84d7c")
-    (red-faint     "#c56a78")
-
-    (green         "#8bcd5b")
-    (green-warmer  "#9bd36a")
-    (green-cooler  "#7ecb86")
-    (green-faint   "#6ea975")
-
-    (yellow        "#ECBE7B")
-    (yellow-warmer "#f4b067")
-    (yellow-cooler "#d9b982")
-    (yellow-faint  "#b49063")
-
-    (blue          "#41a7fc")
-    (blue-warmer   "#5bbff8")
-    (blue-cooler   "#2b82d4")
-    (blue-faint    "#3f6ea6")
-
-    (magenta       "#c75ae8")
-    (magenta-warmer "#d873f1")
-    (magenta-cooler "#b054e0")
-    (magenta-faint  "#a36db9")
-
-    (cyan          "#34bfd0")
-    (cyan-warmer   "#4fd5ce")
-    (cyan-cooler   "#2b94b0")
-    (cyan-faint    "#5699AF")
-
-    (bg-red-intense "#ff7f88")
-    (bg-green-intense "#86df80")
-    (bg-yellow-intense "#ffc200")
-    (bg-blue-intense "#cbcfff")
-    (bg-magenta-intense "#df8fff")
-    (bg-cyan-intense "#88ccff")
-
-    (bg-red-subtle "#fbc3cf")
-    (bg-green-subtle "#b9edca")
-    (bg-yellow-subtle "#f7e78f")
-    (bg-blue-subtle "#ccdfff")
-    (bg-magenta-subtle "#facdf5")
-    (bg-cyan-subtle "#c2ecf0")
-
-    (bg-added         "#3f444a")
-    (bg-added-faint   "#141b24")
-    (bg-added-refine  "#4b6a3a")
-    (fg-added         "#8bcd5b")
-
-    (bg-changed        "#3f444a")
-    (bg-changed-faint  "#141b24")
-    (bg-changed-refine "#7a6330")
-    (fg-changed        "#ECBE7B")
-
-    (bg-removed        "#3f444a")
-    (bg-removed-faint  "#141b24")
-    (bg-removed-refine "#7a3945")
-    (fg-removed        "#f65866")))
-
-(defconst modern-deep-atom-palette-common
+(defconst modern-gruvbox-material-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
-
     (bg-diff-context bg-dim)
     (bg-diff-focus bg-dim)
     (bg-diff-text bg-active)
-    (bg-diff-context bg-dim)
-
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)
     (bg-tab-other bg-active)
-
     (fg-link-symbolic fg-alt)
     (underline-link border)
     (underline-link-symbolic border)
-
     (border-mode-line-active border)
     (bg-mode-line-inactive bg-alt)
     (fg-mode-line-inactive fg-dim)
     (border-mode-line-inactive border)
-
     (bg-line-number-active unspecified)
     (fg-line-number-active accent-0)
     (bg-line-number-inactive unspecified)
-
     (bg-prominent-err bg-err)
     (bg-prominent-warning bg-warning)
     (bg-prominent-note bg-info)
     (fg-prominent-err err)
     (fg-prominent-warning warning)
     (fg-prominent-note info)
-
     (bg-space unspecified)
     (fg-space border)
-
     (bg-active-argument bg-warning)
     (fg-active-argument warning)
     (bg-active-value bg-info)
     (fg-active-value info)
-
     (bg-mark-delete bg-err)
     (fg-mark-delete err)
     (bg-mark-select bg-info)
     (fg-mark-select info)
     (bg-mark-other bg-warning)
     (fg-mark-other warning)
-
-
+    (fg-search-current bg-main)
+    (fg-search-lazy fg-main)
+    (fg-search-static fg-main)
+    (fg-search-replace fg-main)
+    (fg-search-rx-group-0 fg-main)
+    (fg-search-rx-group-1 fg-main)
+    (fg-search-rx-group-2 fg-main)
+    (fg-search-rx-group-3 fg-main)
+    (fg-completion-match-0 accent-0)
+    (fg-completion-match-1 accent-1)
+    (fg-completion-match-2 accent-2)
+    (fg-completion-match-3 accent-3)
     (fg-heading-0 rainbow-0)
     (fg-heading-1 rainbow-1)
     (fg-heading-2 rainbow-2)
@@ -161,23 +162,10 @@
     (fg-heading-7 rainbow-7)
     (fg-heading-8 rainbow-8)))
 
-(defconst modern-deep-atom-palette-mappings-partial
+(defconst modern-gruvbox-material-palette-mappings-partial
   '((err red)
     (warning yellow)
     (info blue)
-
-    (bg-mode-line-active blue-cooler)
-    (fg-mode-line-active fg-main)
-
-    (bg-hover bg-active)
-    (bg-completion bg-active)
-    (bg-hover-secondary bg-active)
-    (bg-hl-line bg-dim)
-    (bg-paren-match bg-main)
-    (bg-err bg-main)
-    (bg-warning bg-main)
-    (bg-info bg-main)
-    (bg-region bg-active)
 
     (fg-link blue)
     (fg-link-visited magenta)
@@ -186,21 +174,21 @@
     (identifier red)
     (fg-prompt magenta)
 
+    (keyword red)
+    (fnname orange)
+    (fnname-call blue)
+    (variable fg-main)
+    (property blue)
+    (string green)
+    (type blue)
+    (constant red)
     (builtin blue)
     (comment fg-dim)
-    (constant red)
-    (fnname blue)
-    (fnname-call blue)
-    (keyword magenta)
-    (preprocessor blue)
     (docstring fg-dim)
-    (string green)
-    (type yellow)
-    (variable red)
-    (property blue)
-    (variable-use red)
+    (preprocessor blue)
     (rx-backslash cyan)
     (rx-construct red)
+    (variable-use red)
 
     (accent-0 magenta)
     (accent-1 yellow)
@@ -230,25 +218,6 @@
     (prose-todo red)
     (fg-prose-verbatim magenta)
 
-    (bg-search-current yellow)
-    (fg-search-current bg-main)
-    (bg-search-lazy    blue)
-    (fg-search-lazy bg-main)
-    (bg-search-replace red)
-    (fg-search-replace bg-main)
-    (bg-search-static  bg-active)
-
-    (bg-search-rx-group-0 magenta)
-    (bg-search-rx-group-1 green)
-    (bg-search-rx-group-2 red)
-    (bg-search-rx-group-3 cyan)
-
-    (fg-search-current fg-main)
-    (fg-search-lazy    fg-main)
-    (fg-search-replace fg-main)
-    (fg-search-static  fg-main)
-
-
     (mail-cite-0 yellow)
     (mail-cite-1 magenta)
     (mail-cite-2 blue)
@@ -258,10 +227,20 @@
     (mail-subject magenta)
     (mail-other magenta)
 
+    (bg-search-static bg-warning)
+    (bg-search-current bg-yellow-intense)
+    (bg-search-lazy bg-hover)
+    (bg-search-replace bg-red-intense)
+
     (bg-search-rx-group-0 bg-magenta-intense)
     (bg-search-rx-group-1 bg-green-intense)
     (bg-search-rx-group-2 bg-red-subtle)
     (bg-search-rx-group-3 bg-cyan-subtle)
+
+    (bg-paren-match bg-main)
+    (bg-err bg-main)
+    (bg-warning bg-main)
+    (bg-info bg-main)
 
     (rainbow-0 magenta)
     (rainbow-1 magenta)
@@ -273,8 +252,8 @@
     (rainbow-7 cyan)
     (rainbow-8 yellow)))
 
-(defcustom modern-deep-atom-palette-overrides nil
-  "Overrides for `modern-deep-atom-palette'.
+(defcustom modern-gruvbox-material-palette-overrides nil
+  "Overrides for `modern-gruvbox-material-palette'.
 
 Mirror the elements of the aforementioned palette, overriding
 their value.
@@ -282,29 +261,29 @@ their value.
 To preview the palette entries, use `modus-themes-preview-colors' or
 `modus-themes-preview-colors-current' (read the documentation for
 further details)."
-  :group 'modern-deep-atom
+  :group 'modern-gruvbox-material
   :type '(repeat (list symbol (choice symbol string))))
 
-(defconst modern-deep-atom-palette
+(defconst modern-gruvbox-material-palette
   (modus-themes-generate-palette
-   modern-deep-atom-palette-partial
+   modern-gruvbox-material-palette-partial
    nil
    nil
-   (append modern-deep-atom-palette-mappings-partial modern-deep-atom-palette-common)))
+   (append modern-gruvbox-material-palette-mappings-partial modern-gruvbox-material-palette-common)))
 
-(defconst modern-deep-atom-custom-faces
+(defconst modern-gruvbox-material-custom-faces
   '(`(magit-section-highlight ((,c :background ,bg-alt)))
     `(magit-diff-file-heading-highlight ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
 
 (modus-themes-theme
- 'modern-deep-atom
- 'modern-deep-atom
- "Deep Atom theme port."
+ 'modern-gruvbox-material
+ 'modern-gruvbox-material
+ "Modern Gruvbox Material theme port."
  'dark
- 'modern-deep-atom-palette
+ 'modern-gruvbox-material-palette
  nil
- 'modern-deep-atom-palette-overrides
- 'modern-deep-atom-custom-faces)
+ 'modern-gruvbox-material-palette-overrides
+ 'modern-gruvbox-material-custom-faces)
 
-(provide 'modern-deep-atom-theme)
-;;; modern-deep-atom-theme.el ends here
+(provide 'modern-gruvbox-material-theme)
+;;; modern-gruvbox-material-theme.el ends here

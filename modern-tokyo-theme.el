@@ -32,16 +32,16 @@
 (require 'modus-themes)
 
 (defconst modern-tokyo-palette-partial
-  '((cursor "#c0caf5")
+  '((cursor "#7aa2f7")
     (bg-main "#24283b")
     (bg-dim "#1f2335")
     (bg-alt "#1f2335")
     (fg-main "#c0caf5")
-    (fg-dim "#6c6e75")
+    (fg-dim "#4e567a")
     (fg-alt "#a9b1d6")
-    (bg-active "#3f444a")
+    (bg-active "#343955")
     (bg-inactive "#24283b")
-    (border "#3f444a")
+    (border "#343955")
 
     (red "#f7768e")
     (red-warmer "#f7768e")
@@ -101,11 +101,10 @@
     (bg-mode-line-active "#1c4a6e")
     (fg-mode-line-active "#c0caf5")
 
-    (bg-completion "#3f444a")
-    (bg-hover "#3f444a")
-    (bg-hover-secondary "#3f444a")
-    (bg-hl-line "#1f2335")
-    (bg-region "#3f444a")))
+    (bg-completion "#343955")
+    (bg-hover "#343955")
+    (bg-hover-secondary "#343955")
+    (bg-hl-line "#1f2335")))
 
 (defconst modern-tokyo-palette-common
   '((fringe unspecified)
@@ -246,7 +245,7 @@
 
     (bg-search-static bg-warning)
     (bg-search-current bg-yellow-intense)
-    (bg-search-lazy bg-blue-intense)
+    (bg-search-lazy bg-hover)
     (bg-search-replace bg-red-intense)
 
     (bg-search-rx-group-0 bg-magenta-intense)

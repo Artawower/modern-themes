@@ -1,0 +1,279 @@
+#+TITLE: Modern Themes
+#+AUTHOR: Artur Yaroshenko
+#+EMAIL: artawower33@gmail.com
+
+* Overview
+
+Modern Themes is a collection of Emacs themes built on top of =modus-themes= infrastructure. It provides a theme generator that creates complete, consistent themes from a minimal color palette.
+
+* Theme Generator
+
+The theme generator (=theme-generator.el=) allows you to create complete Emacs themes by providing just 8 base colors. All derived colors (warmer, cooler, faint variants, diff backgrounds, UI colors, etc.) are automatically generated.
+
+** Installation
+
+#+begin_src elisp
+(load-file "/path/to/theme-generator.el")
+#+end_src
+
+Or add to your =load-path= and:
+
+#+begin_src elisp
+(require 'theme-generator)
+#+end_src
+
+** Quick Start
+
+#+begin_src elisp
+(modern-generate-theme
+ :name "my-awesome-theme"
+ :variant 'dark
+ :palette
+ '(bg-main  "#1a1b26"
+   fg-main  "#c0caf5"
+   red      "#f7768e"
+   green    "#9ece6a"
+   yellow   "#e0af68"
+   blue     "#7aa2f7"
+   magenta  "#bb9af7"
+   cyan     "#7dcfff"))
+#+end_src
+
+The generated theme is automatically copied to your clipboard. Paste it into a new file (e.g., =modern-my-awesome-theme-theme.el=) and you're done!
+
+** Parameters
+
+| Parameter     | Required | Description                                      |
+|---------------+----------+--------------------------------------------------|
+| =:name=       | Yes      | Theme name (without "modern-" prefix)            |
+| =:variant=    | No       | ='dark= or ='light= (default: ='dark=)           |
+| =:description=| No       | Theme description string                         |
+| =:palette=    | Yes      | Plist of base colors (see below)                 |
+| =:syntax=     | No       | Plist to override syntax color mappings          |
+| =:path=       | No       | Directory to save theme file (see below)         |
+
+** Output Options
+
+By default, the generated theme is copied to your clipboard. You can also save it directly to a file:
+
+#+begin_src elisp
+;; Save to file: creates ~/themes/modern-my-theme-theme.el
+(modern-generate-theme
+ :name "my-theme"
+ :path "~/themes"
+ :palette '(...))
+#+end_src
+
+When =:path= is provided:
+- The theme is saved to =PATH/modern-NAME-theme.el=
+- The directory is created if it doesn't exist
+- The theme is also copied to clipboard
+
+** Palette Colors
+
+*** Required Colors
+
+| Key       | Description                          |
+|-----------+--------------------------------------|
+| =bg-main= | Main background color                |
+| =fg-main= | Main foreground/text color           |
+| =red=     | Red accent color                     |
+| =green=   | Green accent color                   |
+| =yellow=  | Yellow accent color                  |
+| =blue=    | Blue accent color                    |
+| =magenta= | Magenta/purple accent color          |
+| =cyan=    | Cyan accent color                    |
+
+*** Optional Accent Colors
+
+| Key       | Description                          |
+|-----------+--------------------------------------|
+| =orange=  | Orange accent color (auto-generates variants) |
+
+** Color Expressions
+
+Instead of hex colors, you can use expressions to derive colors from other palette values:
+
+#+begin_src elisp
+:palette
+'(bg-main  "#24283b"
+  bg-dim   (darken bg-main 5)        ; 5% darker than bg-main
+  bg-alt   (darken bg-main 8)        ; 8% darker
+  bg-active (lighten bg-main 15)     ; 15% lighter
+  fg-main  "#c0caf5"
+  fg-dim   (faint fg-main 20)        ; desaturated and darker
+  fg-alt   (desaturate fg-main 15)   ; 15% less saturated
+  border   (blend bg-main blue 0.2)  ; 20% blue mixed with bg-main
+  cursor   (warmer blue 10)          ; blue shifted 10° towards red
+  red      "#f7768e"
+  green    "#9ece6a"
+  ...)
+#+end_src
+
+*** Available Expression Functions
+
+| Function                      | Description                               |
+|-------------------------------+-------------------------------------------|
+| =(darken COLOR PERCENT)=      | Make color darker by percent              |
+| =(lighten COLOR PERCENT)=     | Make color lighter by percent             |
+| =(blend COLOR1 COLOR2 ALPHA)= | Blend colors (0-1, where 1 = full COLOR2) |
+| =(warmer COLOR [DEG])=        | Shift hue towards red/orange (default 5°) |
+| =(cooler COLOR [DEG])=        | Shift hue towards blue (default 5°)       |
+| =(faint COLOR [AMOUNT])=      | Desaturate and darken (default 25)        |
+| =(desaturate COLOR PERCENT)=  | Reduce saturation by percent              |
+| =(hue-shift COLOR DEG)=       | Shift hue by degrees                      |
+
+*** Optional Colors
+
+If not provided, these are automatically derived:
+
+| Key                  | Default derivation                           |
+|----------------------+----------------------------------------------|
+| =bg-dim=             | Slightly darker than =bg-main=               |
+| =bg-alt=             | Same as =bg-dim=                             |
+| =bg-active=          | Lighter than =bg-main= (for selections)      |
+| =fg-dim=             | Faint version of =fg-main=                   |
+| =fg-alt=             | Desaturated =fg-main=                        |
+| =border=             | Lighter than =bg-main=                       |
+| =cursor=             | Same as =blue=                               |
+| =teal=               | Blend of =cyan= and =green=                  |
+| =bg-mode-line-active=| Blend of =bg-main= and =blue=                |
+
+** Auto-Generated Color Variants
+
+For each accent color (red, green, yellow, blue, magenta, cyan), the generator creates:
+
+| Variant       | Description                                    |
+|---------------+------------------------------------------------|
+| =*-warmer=    | Hue shifted towards red/orange (+5 degrees)    |
+| =*-cooler=    | Hue shifted towards blue (-5 degrees)          |
+| =*-faint=     | Desaturated and darker version                 |
+
+Additionally generated:
+
+- =bg-*-intense= - Bright pastel versions for highlights
+- =bg-*-subtle= - Very light versions for subtle backgrounds
+- =bg-added/removed/changed= - Diff colors with faint/refine variants
+- UI colors for mode-line, completion, hover, etc.
+
+** Syntax Mapping
+
+The =:syntax= parameter allows you to customize which colors are used for syntax highlighting:
+
+#+begin_src elisp
+(modern-generate-theme
+ :name "custom"
+ :palette '(...)
+ :syntax
+ '(fnname red          ; function names use red (default: blue)
+   keyword cyan        ; keywords use cyan (default: magenta-cooler)
+   variable magenta    ; variables use magenta (default: red)
+   string yellow))     ; strings use yellow (default: green)
+#+end_src
+
+*** Available Syntax Keys
+
+| Key            | Default         | Description                    |
+|----------------+-----------------+--------------------------------|
+| =keyword=      | =magenta-cooler=| Language keywords              |
+| =fnname=       | =blue=          | Function definitions           |
+| =fnname-call=  | =blue=          | Function calls                 |
+| =variable=     | =red=           | Variable names                 |
+| =property=     | =blue=          | Object properties              |
+| =string=       | =green=         | String literals                |
+| =type=         | =yellow=        | Type annotations               |
+| =constant=     | =red=           | Constants                      |
+| =builtin=      | =blue=          | Built-in functions             |
+| =comment=      | =fg-dim=        | Comments                       |
+| =docstring=    | =fg-dim=        | Documentation strings          |
+| =preprocessor= | =blue=          | Preprocessor directives        |
+| =rx-backslash= | =cyan=          | Regex backslash                |
+| =rx-construct= | =red=           | Regex constructs               |
+
+** Complete Example
+
+#+begin_src elisp
+;; Generate a Gruvbox Material inspired theme and copy to clipboard
+(modern-generate-theme
+ :name "gruvbox-material"
+ :variant 'dark
+ :description "Modern Gruvbox Material theme port."
+ :palette
+ '(bg-main  "#292828"
+   bg-dim   "#383432"
+   bg-alt   "#383432"
+   fg-main  "#D4BE98"
+   fg-dim   "#7C6F64"
+   fg-alt   "#CCB692"
+   cursor   "#7aa2f7"
+   red      "#EA6962"
+   green    "#A8B665"
+   yellow   "#D8A658"
+   blue     "#7DAEA3"
+   magenta  "#D3859B"
+   cyan     "#89B482")
+ :syntax
+ '(keyword magenta-cooler
+   fnname blue
+   variable red))
+
+;; Generate and save to a specific directory
+(modern-generate-theme
+ :name "gruvbox-material"
+ :variant 'dark
+ :path "~/.emacs.d/themes"
+ :palette
+ '(bg-main  "#292828"
+   fg-main  "#D4BE98"
+   red      "#EA6962"
+   green    "#A8B665"
+   yellow   "#D8A658"
+   blue     "#7DAEA3"
+   magenta  "#D3859B"
+   cyan     "#89B482"))
+#+end_src
+
+** Output Structure
+
+The generator produces a complete theme file with:
+
+1. File header with copyright and commentary
+2. =defconst ...-palette-partial= - All color definitions
+3. =defconst ...-palette-common= - Common face mappings
+4. =defconst ...-palette-mappings-partial= - Syntax highlighting mappings
+5. =defcustom ...-palette-overrides= - User customization interface
+6. =defconst ...-palette= - Final palette with =modus-themes-generate-palette=
+7. =defconst ...-custom-faces= - Custom face definitions (e.g., for magit)
+8. =modus-themes-theme= macro call
+9. =provide= form
+
+* Included Themes
+
+| Theme                  | Description                           |
+|------------------------+---------------------------------------|
+| =modern-tokyo=         | Tokyo Night theme port                |
+| =modern-gruvbox-material= | Gruvbox Material theme port        |
+| =modern-catppuccin-*=  | Catppuccin variants (mocha, latte, etc.) |
+| =modern-ayu-*=         | Ayu variants (dark, light, mirage)   |
+| =modern-github-*=      | GitHub theme variants                |
+| =modern-nano-*=        | Nano theme variants                  |
+| And more...            |                                       |
+
+* Requirements
+
+- Emacs 29.1+
+- =modus-themes= package
+
+* License
+
+GNU General Public License v3.0
+
+* Contributing
+
+Contributions are welcome! Feel free to:
+- Create new theme palettes
+- Improve the generator
+- Report issues
+- Submit pull requests
+
+Repository: https://github.com/artawower/modern-themes
