@@ -1,4 +1,4 @@
-;;; modern-nano-dark-theme.el --- Modern Nano Dark theme port -*- lexical-binding:t -*-
+;;; modern-nano-dark-theme.el --- Modern Nano Dark theme port. -*- lexical-binding:t -*-
 
 ;; Copyright (C) 2025  Free Software Foundation, Inc.
 
@@ -24,9 +24,7 @@
 
 ;;; Commentary:
 ;;
-;; The `modern-nano-dark' theme is a port of the Nano Dark theme
-;; to the `modus-themes' structure.
-;; It follows the N Λ N O aesthetic: roughly monochrome with few accents.
+;; The `modern-nano-dark' theme is a port based on modus-themes structure.
 
 ;;; Code:
 
@@ -34,90 +32,126 @@
 
 (defconst modern-nano-dark-palette-partial
   '((cursor "#ECEFF4")
-    ;; Base
-    (bg-main     "#2E3440")
-    (bg-dim      "#242832")
-    (bg-alt      "#242832")
-    (fg-main     "#ECEFF4")
-    (fg-dim      "#677691")
-    (fg-alt      "#677691")
-    (bg-active   "#3B4252")
+    (bg-active "#434C5D")
+    (bg-added "#242832")
+    (bg-added-faint "#242832")
+    (bg-added-refine "#394331")
+    (bg-alt "#242832")
+    (bg-blue-intense "#c6d4e3")
+    (bg-blue-subtle "#e3e7ea")
+    (bg-changed "#242832")
+    (bg-changed-faint "#242832")
+    (bg-changed-refine "#433d31")
+    (bg-completion "#474c56")
+    (bg-cyan-intense "#bddce5")
+    (bg-cyan-subtle "#e0e9eb")
+    (bg-dim "#242832")
+    (bg-green-intense "#ccdbbf")
+    (bg-green-subtle "#e3e6e1")
+    (bg-hl-line "#242832")
+    (bg-hover "#474c56")
+    (bg-hover-secondary "#474c56")
     (bg-inactive "#2E3440")
-    (border      "#3B4252")
-
-    ;; Accents (Nano-style minimal palette)
-    (red           "#D08770")
-    (red-warmer    "#E06C75")
-    (red-cooler    "#EF5350")
-    (red-faint     "#8c3f3f")
-
-    (green         "#A3BE8C")
-    (green-warmer  "#8FBC8F")
-    (green-cooler  "#66BB6A")
-    (green-faint   "#49634a")
-
-    (yellow         "#EBCB8B")
-    (yellow-warmer  "#FFEE58")
-    (yellow-cooler  "#D08770")
-    (yellow-faint   "#7a673f")
-
-    (blue           "#81A1C1")
-    (blue-warmer    "#A4C8F0")
-    (blue-cooler    "#5E81AC")
-    (blue-faint     "#4a6075")
-
-    (magenta        "#B48EAD")
-    (magenta-warmer "#C07ECF")
-    (magenta-cooler "#8F6F99")
-    (magenta-faint  "#6f5970")
-
-    (cyan           "#88C0D0")
-    (cyan-warmer    "#9FD9E8")
-    (cyan-cooler    "#5E81AC")
-    (cyan-faint     "#4a6a75")
-
-    ;; Diff — darker, subtle, Nano-consistent
-    (bg-added         "#1f3325")
-    (bg-added-faint   "#18271d")
-    (bg-added-refine  "#2b4a33")
-    (fg-added         "#A3BE8C")
-
-    (bg-changed        "#332c1f")
-    (bg-changed-faint  "#272117")
-    (bg-changed-refine "#4b3d27")
-    (fg-changed        "#EBCB8B")
-
-    (bg-removed        "#331f25")
-    (bg-removed-faint  "#27171d")
-    (bg-removed-refine "#4a2b33")
-    (fg-removed        "#D08770")
-
-    ;; Region
-    (bg-region "#434C5E")
-    ))
+    (bg-magenta-intense "#d9c6d6")
+    (bg-magenta-subtle "#e2e2e2")
+    (bg-main "#2E3440")
+    (bg-mode-line-active "#424f60")
+    (bg-orange-intense "#ffaf72")
+    (bg-orange-subtle "#f7d4ba")
+    (bg-red-intense "#e7c3b7")
+    (bg-red-subtle "#eee3e0")
+    (bg-removed "#242832")
+    (bg-removed-faint "#242832")
+    (bg-removed-refine "#433631")
+    (bg-yellow-intense "#f3dfb9")
+    (bg-yellow-subtle "#f3ebda")
+    (blue "#81A1C1")
+    (blue-cooler "#81a6c1")
+    (blue-faint "#8796a5")
+    (blue-warmer "#819bc1")
+    (border "#4d525c")
+    (cyan "#88C0D0")
+    (cyan-cooler "#88c5d0")
+    (cyan-faint "#8cabb4")
+    (cyan-warmer "#88bad0")
+    (fg-added "#A3BE8C")
+    (fg-alt "#677691")
+    (fg-changed "#EBCB8B")
+    (fg-dim "#677691")
+    (fg-main "#ECEFF4")
+    (fg-mode-line-active "#ECEFF4")
+    (fg-removed "#D08770")
+    (green "#A3BE8C")
+    (green-cooler "#a7be8c")
+    (green-faint "#99a391")
+    (green-warmer "#9ebe8c")
+    (magenta "#B48EAD")
+    (magenta-cooler "#b38eb0")
+    (magenta-faint "#989497")
+    (magenta-warmer "#b38ea9")
+    (orange "#FF6F00")
+    (orange-cooler "#ff5900")
+    (orange-faint "#d96914")
+    (orange-warmer "#ff8400")
+    (red "#D08770")
+    (red-cooler "#d07f70")
+    (red-faint "#b38678")
+    (red-warmer "#d08f70")
+    (teal "#91bfb8")
+    (yellow "#EBCB8B")
+    (yellow-cooler "#ebc38a")
+    (yellow-faint "#d1ba8c")
+    (yellow-warmer "#ebd38a")))
 
 (defconst modern-nano-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
-
-    ;; Diff defaults
     (bg-diff-context bg-dim)
-    (bg-diff-focus bg-alt)
+    (bg-diff-focus bg-dim)
     (bg-diff-text bg-active)
-
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)
     (bg-tab-other bg-active)
-
     (fg-link-symbolic fg-alt)
     (underline-link border)
     (underline-link-symbolic border)
-
     (border-mode-line-active border)
     (bg-mode-line-inactive bg-alt)
     (fg-mode-line-inactive fg-dim)
     (border-mode-line-inactive border)
-
+    (bg-line-number-active unspecified)
+    (fg-line-number-active accent-0)
+    (bg-line-number-inactive unspecified)
+    (bg-prominent-err bg-err)
+    (bg-prominent-warning bg-warning)
+    (bg-prominent-note bg-info)
+    (fg-prominent-err err)
+    (fg-prominent-warning warning)
+    (fg-prominent-note info)
+    (bg-space unspecified)
+    (fg-space border)
+    (bg-active-argument bg-warning)
+    (fg-active-argument warning)
+    (bg-active-value bg-info)
+    (fg-active-value info)
+    (bg-mark-delete bg-err)
+    (fg-mark-delete err)
+    (bg-mark-select bg-info)
+    (fg-mark-select info)
+    (bg-mark-other bg-warning)
+    (fg-mark-other warning)
+    (fg-search-current bg-main)
+    (fg-search-lazy fg-main)
+    (fg-search-static fg-main)
+    (fg-search-replace fg-main)
+    (fg-search-rx-group-0 fg-main)
+    (fg-search-rx-group-1 fg-main)
+    (fg-search-rx-group-2 fg-main)
+    (fg-search-rx-group-3 fg-main)
+    (fg-completion-match-0 accent-0)
+    (fg-completion-match-1 accent-1)
+    (fg-completion-match-2 accent-2)
+    (fg-completion-match-3 accent-3)
     (fg-heading-0 rainbow-0)
     (fg-heading-1 rainbow-1)
     (fg-heading-2 rainbow-2)
@@ -129,47 +163,47 @@
     (fg-heading-8 rainbow-8)))
 
 (defconst modern-nano-dark-palette-mappings-partial
-  '((err red-warmer)
-    (warning yellow-warmer)
-    (info blue-cooler)
+  '((err red)
+    (warning yellow)
+    (info blue)
 
-    (bg-mode-line-active bg-active)
-    (fg-mode-line-active fg-main)
+    (fg-link blue)
+    (fg-link-visited magenta)
+    (name red)
+    (keybind red)
+    (identifier red)
+    (fg-prompt magenta)
 
-    (bg-completion bg-dim)
-    (bg-hover bg-active)
-    (bg-hover-secondary bg-active)
-    (bg-hl-line bg-active)
-    (bg-paren-match bg-main)
-    (bg-err bg-main)
-    (bg-warning bg-main)
-    (bg-info bg-main)
-    (bg-region bg-region)
-
-    ;; Syntax (monochrome + small accents)
-    (comment fg-dim)
-    (string fg-dim)
-    (builtin blue-cooler)
-    (constant fg-main)
-    (fnname fg-main)
-    (fnname-call fg-main)
     (keyword blue-cooler)
-    (preprocessor blue-cooler)
-    (docstring fg-dim)
-    (type blue-cooler)
+    (fnname fg-main)
+    (fnname-call blue)
     (variable fg-main)
-    (variable-use fg-main)
     (property fg-main)
-    (rx-backslash blue-cooler)
-    (rx-construct blue-cooler)
+    (string green)
+    (type blue-cooler)
+    (constant fg-main)
+    (builtin blue)
+    (comment fg-dim)
+    (docstring fg-dim)
+    (preprocessor blue)
+    (rx-backslash cyan)
+    (rx-construct red)
+    (rainbow-0 fg-main)
+    (rainbow-1 fg-main)
+    (rainbow-2 fg-main)
+    (rainbow-3 fg-main)
+    (rainbow-4 fg-main)
+    (rainbow-5 fg-main)
+    (rainbow-6 fg-main)
+    (rainbow-7 fg-main)
+    (rainbow-8 fg-main)
+    (variable-use red)
 
-    ;; Minimal accents everywhere
-    (accent-0 fg-main)
-    (accent-1 fg-main)
-    (accent-2 fg-main)
-    (accent-3 fg-main)
+    (accent-0 magenta)
+    (accent-1 yellow)
+    (accent-2 blue)
+    (accent-3 red)
 
-    ;; Date & prose
     (date-common cyan)
     (date-deadline red)
     (date-deadline-subtle red-faint)
@@ -182,18 +216,17 @@
     (date-weekday cyan)
     (date-weekend red-faint)
 
-    (fg-prose-code fg-dim)
+    (fg-prose-code yellow)
     (prose-done green)
-    (fg-prose-macro blue-cooler)
+    (fg-prose-macro cyan)
     (prose-metadata fg-dim)
     (prose-metadata-value fg-alt)
     (prose-table fg-alt)
     (prose-table-formula info)
     (prose-tag yellow-faint)
     (prose-todo red)
-    (fg-prose-verbatim blue-cooler)
+    (fg-prose-verbatim magenta)
 
-    ;; Mail
     (mail-cite-0 yellow)
     (mail-cite-1 magenta)
     (mail-cite-2 blue)
@@ -203,43 +236,53 @@
     (mail-subject magenta)
     (mail-other magenta)
 
-    ;; Search
     (bg-search-static bg-warning)
     (bg-search-current bg-yellow-intense)
-    (bg-search-lazy bg-blue-intense)
+    (bg-search-lazy bg-hover)
     (bg-search-replace bg-red-intense)
 
-    ;; Rainbow headings – monochrome
-    (rainbow-0 fg-main)
-    (rainbow-1 fg-main)
-    (rainbow-2 fg-main)
-    (rainbow-3 fg-main)
-    (rainbow-4 fg-main)
-    (rainbow-5 fg-main)
-    (rainbow-6 fg-main)
-    (rainbow-7 fg-main)
-    (rainbow-8 fg-main)))
+    (bg-search-rx-group-0 bg-magenta-intense)
+    (bg-search-rx-group-1 bg-green-intense)
+    (bg-search-rx-group-2 bg-red-subtle)
+    (bg-search-rx-group-3 bg-cyan-subtle)
+
+    (bg-paren-match bg-main)
+    (bg-err bg-main)
+    (bg-warning bg-main)
+    (bg-info bg-main)
+
+    (rainbow-0 magenta)
+    (rainbow-1 magenta)
+    (rainbow-2 yellow)
+    (rainbow-3 cyan)
+    (rainbow-4 magenta)
+    (rainbow-5 blue)
+    (rainbow-6 red)
+    (rainbow-7 cyan)
+    (rainbow-8 yellow)))
 
 (defcustom modern-nano-dark-palette-overrides nil
   "Overrides for `modern-nano-dark-palette'.
-Each entry should be of the form (NAME VALUE) where NAME is a
-palette symbol and VALUE is either another symbol or a string
-representing a color.  These values replace entries in the
-computed palette."
+
+Mirror the elements of the aforementioned palette, overriding
+their value.
+
+To preview the palette entries, use `modus-themes-preview-colors' or
+`modus-themes-preview-colors-current' (read the documentation for
+further details)."
   :group 'modern-nano-dark
   :type '(repeat (list symbol (choice symbol string))))
 
 (defconst modern-nano-dark-palette
   (modus-themes-generate-palette
    modern-nano-dark-palette-partial
-   nil nil
-   (append modern-nano-dark-palette-mappings-partial
-           modern-nano-dark-palette-common)))
+   nil
+   nil
+   (append modern-nano-dark-palette-mappings-partial modern-nano-dark-palette-common)))
 
 (defconst modern-nano-dark-custom-faces
   '(`(magit-section-highlight ((,c :background ,bg-alt)))
-    `(magit-diff-file-heading-highlight
-      ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
+    `(magit-diff-file-heading-highlight ((,c :inherit magit-diff-file-heading :background ,bg-alt)))))
 
 (modus-themes-theme
  'modern-nano-dark
@@ -252,5 +295,4 @@ computed palette."
  'modern-nano-dark-custom-faces)
 
 (provide 'modern-nano-dark-theme)
-
 ;;; modern-nano-dark-theme.el ends here
