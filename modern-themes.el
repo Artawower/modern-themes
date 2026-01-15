@@ -76,12 +76,15 @@ The `modern-themes' are built on top of the `modus-themes'."
     modern-nano-light
     modern-catppuccin-latte
     modern-ayu-light
-    modern-github-light)
+    modern-github-light
+    modern-quiet-light
+    modern-spacegray-light)
   "List of symbols with the light Modern themes.")
 
 (defconst modern-themes-dark-themes
   '(modern-deep-atom
     modern-nano-dark
+    modern-nano-dark-2
     modern-pinkywinky-dark
     modern-tokyo
     modern-catppuccin-frappe
@@ -92,7 +95,11 @@ The `modern-themes' are built on top of the `modus-themes'."
     modern-nightfly-purple
     modern-ayu-dark
     modern-ayu-mirage
-    modern-helix)
+    modern-helix
+    modern-fluoromachine-high-contrast
+    modern-gruvbox-material
+    modern-laser
+    modern-spacegray)
   "List of symbols with the dark Modern themes.")
 
 (defconst modern-themes-items

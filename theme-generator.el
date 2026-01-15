@@ -414,16 +414,17 @@ These are very light, desaturated versions."
       (bg-magenta-subtle . ,(mtg--blend "#ffffff" (mtg--desaturate magenta 20) 0.3))
       (bg-cyan-subtle . ,(mtg--blend "#ffffff" (mtg--desaturate cyan 20) 0.3)))))
 
-(defun mtg--make-diff-refine-bg (color variant)
+(defun mtg--make-diff-refine-bg (color variant &optional darker)
   "Create a diff refine background from COLOR for VARIANT.
-Results in a muted, darker version - subtle highlight that doesn't overpower text."
+Results in a muted, darker version - subtle highlight that doesn't overpower text.
+If DARKER is non-nil, produce a darker variant (for changed/refine)."
   (let* ((rgb (mtg--rgb color))
          (hsl (apply #'color-rgb-to-hsl rgb))
          (h (nth 0 hsl))
-         ;; Target: S=15%, L=22-24% for dark themes (very subtle tint)
-         ;;         S=30%, L=75% for light themes (more visible)
-         (target-s (if (eq variant 'dark) 0.15 0.30))
-         (target-l (if (eq variant 'dark) 0.23 0.75)))
+         (target-s (if (eq variant 'dark) 0.15 0.35))
+         (target-l (if (eq variant 'dark)
+                       (if darker 0.18 0.23)
+                     (if darker 0.65 0.80))))
     (mtg--hex (color-hsl-to-rgb h target-s target-l))))
 
 (defun mtg--generate-diff-colors (palette variant)
@@ -442,9 +443,10 @@ Results in a muted, darker version - subtle highlight that doesn't overpower tex
          (red (mtg--plist-get palette 'red))
          (yellow (mtg--plist-get palette 'yellow))
          ;; Refine backgrounds - muted accent colors for highlighting exact changes
+         ;; changed-refine uses darker green (not yellow) - shows exact changes within added lines
          (bg-added-ref (mtg--make-diff-refine-bg green variant))
          (bg-removed-ref (mtg--make-diff-refine-bg red variant))
-         (bg-changed-ref (mtg--make-diff-refine-bg yellow variant)))
+         (bg-changed-ref (mtg--make-diff-refine-bg green variant t)))
     `((bg-added . ,bg-dim)
       (bg-added-faint . ,bg-dim)
       (bg-added-refine . ,bg-added-ref)
