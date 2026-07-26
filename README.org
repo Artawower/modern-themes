@@ -50,6 +50,7 @@ The generated theme is automatically copied to your clipboard. Paste it into a n
 | =:description=| No       | Theme description string                         |
 | =:palette=    | Yes      | Plist of base colors (see below)                 |
 | =:syntax=     | No       | Plist to override syntax color mappings          |
+| =:minimum-contrast= | No | Minimum WCAG text contrast (default: =4.5=)       |
 | =:path=       | No       | Directory to save theme file (see below)         |
 
 ** Output Options
@@ -138,6 +139,32 @@ If not provided, these are automatically derived:
 | =cursor=             | Same as =blue=                               |
 | =teal=               | Blend of =cyan= and =green=                  |
 | =bg-mode-line-active=| Blend of =bg-main= and =blue=                |
+
+** Readable Foregrounds
+
+By default, the generator enforces a WCAG contrast ratio of =4.5:1= between
+=bg-main= and the semantic text colors =fg-main=, =fg-dim=, and =fg-alt=.
+Colors that already meet the threshold are preserved.  Lower-contrast colors
+are minimally blended toward black or white until they become readable.  Accent
+colors are left untouched so theme palettes keep their intended character.
+
+The generated terminal mappings also keep neutral ANSI foregrounds readable.
+In particular, ANSI bright black (used for the dim suffix of Jujutsu change and
+commit IDs in Majutsu) maps to =fg-dim= instead of a background color.
+Packages such as Ghostel inherit these mappings through the standard
+=ansi-color-*= faces, while ANSI background colors remain under the control of
+=modus-themes=.
+
+Set a different threshold for one theme when needed:
+
+#+begin_src elisp
+(modern-generate-theme
+ :name "soft-contrast"
+ :minimum-contrast 3.0
+ :palette '(...))
+#+end_src
+
+Use =1.0= to disable contrast correction and preserve palette colors exactly.
 
 ** Auto-Generated Color Variants
 

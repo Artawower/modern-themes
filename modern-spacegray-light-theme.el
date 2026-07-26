@@ -168,6 +168,13 @@
     (identifier red)
     (fg-prompt magenta)
 
+    ;; Keep ANSI neutral foregrounds readable in terminal packages such as
+    ;; Ghostel while leaving their background mappings to modus-themes.
+    (fg-term-black fg-main)
+    (fg-term-black-bright fg-dim)
+    (fg-term-white fg-dim)
+    (fg-term-white-bright fg-main)
+
     (keyword magenta)
     (fnname blue)
     (fnname-call blue)

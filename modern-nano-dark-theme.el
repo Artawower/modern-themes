@@ -75,9 +75,9 @@
     (cyan-faint "#8cabb4")
     (cyan-warmer "#88bad0")
     (fg-added "#A3BE8C")
-    (fg-alt "#677691")
+    (fg-alt "#919caf")
     (fg-changed "#EBCB8B")
-    (fg-dim "#677691")
+    (fg-dim "#919caf")
     (fg-main "#ECEFF4")
     (fg-mode-line-active "#ECEFF4")
     (fg-removed "#D08770")
@@ -173,6 +173,13 @@
     (keybind red)
     (identifier red)
     (fg-prompt magenta)
+
+    ;; Keep ANSI neutral foregrounds readable in terminal packages such as
+    ;; Ghostel while leaving their background mappings to modus-themes.
+    (fg-term-black fg-dim)
+    (fg-term-black-bright fg-dim)
+    (fg-term-white fg-dim)
+    (fg-term-white-bright fg-main)
 
     (keyword blue-cooler)
     (fnname fg-main)

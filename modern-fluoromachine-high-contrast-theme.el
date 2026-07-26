@@ -97,6 +97,10 @@
 (defconst modern-fluoromachine-high-contrast-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-term-black fg-dim)
+    (fg-term-black-bright fg-dim)
+    (fg-term-white fg-dim)
+    (fg-term-white-bright fg-main)
     (bg-diff-context bg-dim)
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)

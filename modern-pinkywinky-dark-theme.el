@@ -98,6 +98,10 @@
 (defconst modern-pinkywinky-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-term-black fg-dim)
+    (fg-term-black-bright fg-dim)
+    (fg-term-white fg-dim)
+    (fg-term-white-bright fg-main)
 
     ;; Diff defaults for Modus
     (bg-diff-context bg-dim)

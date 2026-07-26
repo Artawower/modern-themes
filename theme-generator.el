@@ -35,6 +35,14 @@
   "Theme generator for modern-themes."
   :group 'faces)
 
+(defcustom modern-theme-generator-minimum-contrast 4.5
+  "Minimum WCAG contrast ratio for generated foreground colors.
+The generator adjusts foreground and accent colors toward black or white
+until they reach this ratio against `bg-main'.  Set this to 1.0 to
+preserve palette colors without contrast correction."
+  :group 'modern-theme-generator
+  :type 'number)
+
 ;;; --- Color utilities ---
 
 (defun mtg--hex-p (s)
@@ -93,6 +101,68 @@
          (alpha (mtg--clamp01 (float alpha))))
     (mtg--hex
      (cl-mapcar (lambda (x y) (+ (* x (- 1.0 alpha)) (* y alpha))) a b))))
+
+(defun mtg--relative-luminance (hex)
+  "Return the WCAG relative luminance of HEX."
+  (let ((channels
+         (mapcar (lambda (channel)
+                   (if (<= channel 0.04045)
+                       (/ channel 12.92)
+                     (expt (/ (+ channel 0.055) 1.055) 2.4)))
+                 (mtg--rgb hex))))
+    (+ (* 0.2126 (nth 0 channels))
+       (* 0.7152 (nth 1 channels))
+       (* 0.0722 (nth 2 channels)))))
+
+(defun mtg--contrast-ratio (hex-a hex-b)
+  "Return the WCAG contrast ratio between HEX-A and HEX-B."
+  (let ((a (mtg--relative-luminance hex-a))
+        (b (mtg--relative-luminance hex-b)))
+    (/ (+ (max a b) 0.05)
+       (+ (min a b) 0.05))))
+
+(defun mtg--ensure-contrast (foreground background minimum-ratio)
+  "Make FOREGROUND readable against BACKGROUND at MINIMUM-RATIO.
+Return FOREGROUND unchanged when it already meets the requested WCAG
+contrast.  Otherwise blend it toward whichever of black or white has
+more contrast with BACKGROUND."
+  (if (>= (mtg--contrast-ratio foreground background) minimum-ratio)
+      foreground
+    (let* ((black "#000000")
+           (white "#ffffff")
+           (target (if (> (mtg--contrast-ratio black background)
+                          (mtg--contrast-ratio white background))
+                       black
+                     white))
+           (target-ratio (mtg--contrast-ratio target background))
+           (low 0.0)
+           (high 1.0)
+           result)
+      (when (< target-ratio minimum-ratio)
+        (error "Contrast %.1f cannot be reached against %s (maximum %.2f)"
+               minimum-ratio background target-ratio))
+      ;; Find the smallest adjustment that reaches the requested ratio.
+      (dotimes (_ 24)
+        (let* ((alpha (/ (+ low high) 2.0))
+               (candidate (mtg--blend foreground target alpha)))
+          (if (>= (mtg--contrast-ratio candidate background) minimum-ratio)
+              (setq high alpha
+                    result candidate)
+            (setq low alpha))))
+      (or result target))))
+
+(defun mtg--normalize-foreground-palette (palette minimum-ratio)
+  "Ensure foreground colors in PALETTE meet MINIMUM-RATIO.
+Only colors intended for text are adjusted; background, border, and
+cursor colors retain their original values."
+  (let ((result (copy-sequence palette))
+        (background (mtg--plist-get palette 'bg-main)))
+    (dolist (key '(fg-main fg-dim fg-alt))
+      (when-let* ((color (mtg--plist-get palette key)))
+        (setq result
+              (plist-put result key
+                         (mtg--ensure-contrast color background minimum-ratio)))))
+    result))
 
 (defun mtg--warmer (hex &optional deg)
   "Make HEX color warmer by shifting hue towards red/orange.
@@ -325,17 +395,13 @@ Returns a new plist with all expressions evaluated to hex colors."
     (dolist (key mtg--accent-keys)
       (let ((color (mtg--plist-get palette key)))
         (when (mtg--hex-p color)
-          ;; Base color
           (push (cons key color) result)
-          ;; Warmer variant
           (push (cons (intern (format "%s-warmer" key))
                       (mtg--warmer color))
                 result)
-          ;; Cooler variant
           (push (cons (intern (format "%s-cooler" key))
                       (mtg--cooler color))
                 result)
-          ;; Faint variant
           (push (cons (intern (format "%s-faint" key))
                       (mtg--faint color))
                 result))))
@@ -368,13 +434,18 @@ VARIANT is either 'dark or 'light."
       (border . ,border)
       (cursor . ,(or (mtg--plist-get palette 'cursor) blue)))))
 
-(defun mtg--generate-fg-colors (palette)
-  "Generate foreground colors from PALETTE."
-  `((fg-main . ,(mtg--plist-get palette 'fg-main))
-    (fg-dim . ,(or (mtg--plist-get palette 'fg-dim)
-                   (mtg--faint (mtg--plist-get palette 'fg-main) 20)))
-    (fg-alt . ,(or (mtg--plist-get palette 'fg-alt)
-                   (mtg--desaturate (mtg--plist-get palette 'fg-main) 15)))))
+(defun mtg--generate-fg-colors (palette minimum-ratio)
+  "Generate accessible foreground colors from PALETTE.
+Ensure every result reaches MINIMUM-RATIO against `bg-main'."
+  (let* ((background (mtg--plist-get palette 'bg-main))
+         (fg-main (mtg--plist-get palette 'fg-main))
+         (fg-dim (or (mtg--plist-get palette 'fg-dim)
+                     (mtg--faint fg-main 20)))
+         (fg-alt (or (mtg--plist-get palette 'fg-alt)
+                     (mtg--desaturate fg-main 15))))
+    `((fg-main . ,(mtg--ensure-contrast fg-main background minimum-ratio))
+      (fg-dim . ,(mtg--ensure-contrast fg-dim background minimum-ratio))
+      (fg-alt . ,(mtg--ensure-contrast fg-alt background minimum-ratio)))))
 
 (defun mtg--generate-intense-colors (palette)
   "Generate intense background colors from PALETTE.
@@ -485,7 +556,7 @@ If DARKER is non-nil, produce a darker variant (for changed/refine)."
   (let ((cyan (mtg--plist-get palette 'cyan))
         (green (mtg--plist-get palette 'green)))
     `((teal . ,(or (mtg--plist-get palette 'teal)
-                   ;; Teal is between cyan and green, shift cyan towards green
+                   ;; Teal is between cyan and green, shift cyan towards green.
                    (mtg--blend cyan green 0.35))))))
 
 ;;; --- Syntax mapping ---
@@ -573,10 +644,11 @@ If DARKER is non-nil, produce a darker variant (for changed/refine)."
  mtg--palette-common
  "\n    ")))
 
-(defun mtg--render-mappings-partial (name syntax-plist)
-  "Render palette-mappings-partial for NAME with SYNTAX-PLIST."
+(defun mtg--render-mappings-partial (name syntax-plist variant)
+  "Render palette mappings for NAME, SYNTAX-PLIST, and VARIANT."
   (let* ((merged (mtg--merge-syntax-mapping syntax-plist))
-         (alist (mtg--plist->alist merged)))
+         (alist (mtg--plist->alist merged))
+         (term-black (if (eq variant 'dark) 'fg-dim 'fg-main)))
     (format "(defconst modern-%s-palette-mappings-partial
   '((err red)
     (warning yellow)
@@ -588,6 +660,13 @@ If DARKER is non-nil, produce a darker variant (for changed/refine)."
     (keybind red)
     (identifier red)
     (fg-prompt magenta)
+
+    ;; Keep ANSI neutral foregrounds readable in terminal packages such as
+    ;; Ghostel while leaving their background mappings to modus-themes.
+    (fg-term-black %s)
+    (fg-term-black-bright fg-dim)
+    (fg-term-white fg-dim)
+    (fg-term-white-bright fg-main)
 
 %s
     (variable-use red)
@@ -654,7 +733,7 @@ If DARKER is non-nil, produce a darker variant (for changed/refine)."
     (rainbow-7 cyan)
     (rainbow-8 yellow)))
 
-" name
+" name term-black
 (mapconcat
  (lambda (pair)
    (format "    (%s %s)" (car pair) (cdr pair)))
@@ -738,6 +817,7 @@ ARGS is a plist with:
                    (faint yellow 30)
   :syntax      - Optional plist to override syntax colors, e.g.:
                    '(fnname red keyword cyan)
+  :minimum-contrast - Optional WCAG ratio for foreground colors (default: 4.5)
   :path        - Optional directory path to save the theme file.
                  If provided, saves to PATH/modern-NAME-theme.el
 
@@ -749,7 +829,10 @@ Returns the generated theme string (also copied to clipboard)."
          (raw-palette (plist-get args :palette))
          (syntax (plist-get args :syntax))
          (path (plist-get args :path))
-         ;; Resolve color expressions to hex values
+         (minimum-contrast
+          (or (plist-get args :minimum-contrast)
+              modern-theme-generator-minimum-contrast))
+         ;; Resolve color expressions to hex values.
          (palette (mtg--resolve-palette raw-palette)))
 
     ;; Validate required parameters
@@ -758,14 +841,21 @@ Returns the generated theme string (also copied to clipboard)."
     (unless raw-palette
       (error "Missing required :palette parameter"))
 
-    ;; Validate required palette colors (after resolution)
+    ;; Validate required palette colors (after resolution).
     (dolist (key '(bg-main fg-main red green yellow blue magenta cyan))
       (unless (mtg--hex-p (mtg--plist-get palette key))
         (error "Missing or invalid required palette color: %s" key)))
+    (unless (and (numberp minimum-contrast)
+                 (<= 1.0 minimum-contrast 21.0))
+      (error ":minimum-contrast must be a number from 1.0 to 21.0"))
 
-    ;; Generate all color components
+    ;; Normalize colors used as text before deriving the complete palette.
+    (setq palette
+          (mtg--normalize-foreground-palette palette minimum-contrast))
+
+    ;; Generate all color components.
     (let* ((bg-colors (mtg--generate-bg-variants palette variant))
-           (fg-colors (mtg--generate-fg-colors palette))
+           (fg-colors (mtg--generate-fg-colors palette minimum-contrast))
            (accents (mtg--generate-accent-variants palette))
            (intense (mtg--generate-intense-colors palette))
            (subtle (mtg--generate-subtle-colors palette))
@@ -786,7 +876,7 @@ Returns the generated theme string (also copied to clipboard)."
                      "(require 'modus-themes)\n\n"
                      (mtg--render-palette-partial name sorted-colors)
                      (mtg--render-palette-common name)
-                     (mtg--render-mappings-partial name syntax)
+                     (mtg--render-mappings-partial name syntax variant)
                      (mtg--render-palette-overrides name)
                      (mtg--render-palette name)
                      (mtg--render-custom-faces name)

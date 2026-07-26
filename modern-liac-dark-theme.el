@@ -106,6 +106,10 @@
 (defconst modern-liac-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-term-black fg-dim)
+    (fg-term-black-bright fg-dim)
+    (fg-term-white fg-dim)
+    (fg-term-white-bright fg-main)
 
     (bg-diff-context bg-dim)
     (bg-diff-focus bg-dim)
