@@ -91,21 +91,21 @@
     (bg-added         "#132019")
     (bg-added-faint   "#0E1812")
     (bg-added-refine  "#1C3425")
-    (fg-added         "#A5E6B7")
 
     (bg-changed        "#251E12")
     (bg-changed-faint  "#19140D")
     (bg-changed-refine "#3A2B18")
-    (fg-changed        "#FFD27E")
 
     (bg-removed        "#291621")
     (bg-removed-faint  "#1D0F18")
-    (bg-removed-refine "#3D1E2E")
-    (fg-removed        "#FF8FAF")))
+    (bg-removed-refine "#3D1E2E")))
 
 (defconst modern-liac-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

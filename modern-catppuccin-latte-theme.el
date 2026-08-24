@@ -92,17 +92,14 @@
     (bg-added         "#e3f2da")
     (bg-added-faint   "#eef7e6")
     (bg-added-refine  "#a6d189")
-    (fg-added         "#326925")
 
     (bg-changed        "#f5e0c3")
     (bg-changed-faint  "#f9ecda")
     (bg-changed-refine "#e5c890")
-    (fg-changed        "#7a4f1c")
 
     (bg-removed        "#f4d8dd")
     (bg-removed-faint  "#fae8ea")
     (bg-removed-refine "#e78284")
-    (fg-removed        "#7a2932")
 
     
     (bg-mode-line-active-col "#bcc0cc")
@@ -121,6 +118,9 @@
 (defconst modern-catppuccin-latte-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-main)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

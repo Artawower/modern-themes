@@ -90,17 +90,14 @@
     (bg-added         "#30363d")
     (bg-added-faint   "#161b22")
     (bg-added-refine  "#2d5630")
-    (fg-added         "#3fb950")
 
     (bg-changed        "#30363d")
     (bg-changed-faint  "#161b22")
     (bg-changed-refine "#7a5e28")
-    (fg-changed        "#d29922")
 
     (bg-removed        "#30363d")
     (bg-removed-faint  "#161b22")
     (bg-removed-refine "#6f2c34")
-    (fg-removed        "#ff7b72")
 
     (bg-mode-line-active-col "#161b22")
     (bg-hover-col "#21262d")
@@ -110,6 +107,9 @@
 (defconst modern-github-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)
@@ -151,17 +151,14 @@
     (bg-added          bg-added)
     (bg-added-faint    bg-added-faint)
     (bg-added-refine   bg-added-refine)
-    (fg-added          fg-added)
 
     (bg-changed        bg-changed)
     (bg-changed-faint  bg-changed-faint)
     (bg-changed-refine bg-changed-refine)
-    (fg-changed        fg-changed)
 
     (bg-removed        bg-removed)
     (bg-removed-faint  bg-removed-faint)
     (bg-removed-refine bg-removed-refine)
-    (fg-removed        fg-removed)
 
     (bg-search-current yellow)
     (bg-search-lazy    blue)

@@ -71,17 +71,14 @@
     (bg-added         "#213a28")
     (bg-added-faint   "#1a2e20")
     (bg-added-refine  "#285033")
-    (fg-added         "#9ff28f")
 
     (bg-changed        "#3d3421")
     (bg-changed-faint  "#2c2619")
     (bg-changed-refine "#504429")
-    (fg-changed        "#E8DCA0")
 
     (bg-removed        "#40252b")
     (bg-removed-faint  "#2e1a1e")
     (bg-removed-refine "#532e35")
-    (fg-removed        "#F5666D")
 
     
     (bg-red-intense     "#4e2a32")
@@ -101,6 +98,9 @@
 (defconst modern-helix-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

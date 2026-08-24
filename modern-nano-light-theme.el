@@ -93,23 +93,23 @@
     (bg-added "#C8E6C9")
     (bg-added-faint "#E8F5E9")
     (bg-added-refine "#A5D6A7")
-    (fg-added "#1B5E20")
 
     (bg-changed "#FFF9C4")
     (bg-changed-faint "#FFFDE7")
     (bg-changed-refine "#FFF59D")
-    (fg-changed "#F57F17")
 
     (bg-removed "#FFCDD2")
     (bg-removed-faint "#FFEBEE")
     (bg-removed-refine "#EF9A9A")
-    (fg-removed "#B71C1C")
 
     (fg-strong "#263238")))
 
 (defconst modern-nano-light-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-main)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

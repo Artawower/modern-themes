@@ -77,17 +77,14 @@
     (bg-added         "#002411")
     (bg-added-faint   "#001809")
     (bg-added-refine  "#005f3c")
-    (fg-added         "#00ffa6")
 
     (bg-changed        "#262600")
     (bg-changed-faint  "#1a1a00")
     (bg-changed-refine "#9d9d39")
-    (fg-changed        "#faff00")
 
     (bg-removed        "#320018")
     (bg-removed-faint  "#240010")
     (bg-removed-refine "#b83963")
-    (fg-removed        "#ff2a6d")
 
     (bg-mode-line-active-col "#0a0a0f")
     (bg-hover-col "#11111a")
@@ -97,6 +94,9 @@
 (defconst modern-fluoromachine-high-contrast-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)
@@ -138,17 +138,14 @@
     (bg-added          bg-added)
     (bg-added-faint    bg-added-faint)
     (bg-added-refine   bg-added-refine)
-    (fg-added          fg-added)
 
     (bg-changed        bg-changed)
     (bg-changed-faint  bg-changed-faint)
     (bg-changed-refine bg-changed-refine)
-    (fg-changed        fg-changed)
 
     (bg-removed        bg-removed)
     (bg-removed-faint  bg-removed-faint)
     (bg-removed-refine bg-removed-refine)
-    (fg-removed        fg-removed)
 
     (bg-search-current yellow)
     (bg-search-lazy    blue)

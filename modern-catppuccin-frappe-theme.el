@@ -92,17 +92,14 @@
     (bg-added         "#51576d")
     (bg-added-faint   "#414559")
     (bg-added-refine  "#637d52")
-    (fg-added         "#a6d189")
 
     (bg-changed        "#51576d")
     (bg-changed-faint  "#414559")
     (bg-changed-refine "#876f44")
-    (fg-changed        "#e5c890")
 
     (bg-removed        "#51576d")
     (bg-removed-faint  "#414559")
     (bg-removed-refine "#8a4e4f")
-    (fg-removed        "#e78284")
 
     
     (bg-mode-line-active-col "#51576d") 
@@ -122,6 +119,9 @@
 (defconst modern-catppuccin-frappe-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

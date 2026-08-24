@@ -86,17 +86,14 @@
     (bg-added "#283B4D")
     (bg-added-faint "#1f2d3a")
     (bg-added-refine "#335066")
-    (fg-added "#9ece6a")
 
     (bg-removed "#3F2D3D")
     (bg-removed-faint "#2e212d")
     (bg-removed-refine "#523647")
-    (fg-removed "#f7768e")
 
     (bg-changed "#3E2E1E")
     (bg-changed-faint "#2e2118")
     (bg-changed-refine "#4d3a28")
-    (fg-changed "#e0af68")
 
     (bg-mode-line-active "#1c4a6e")
     (fg-mode-line-active "#c0caf5")
@@ -109,6 +106,9 @@
 (defconst modern-tokyo-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

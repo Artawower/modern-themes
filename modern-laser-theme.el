@@ -71,17 +71,14 @@
     (bg-added         "#0A1A0A")
     (bg-added-faint   "#051505")
     (bg-added-refine  "#0F2A0F")
-    (fg-added         "#B4FB72")
 
     (bg-changed        "#1A0A0A")
     (bg-changed-faint  "#150505")
     (bg-changed-refine "#2A0F0F")
-    (fg-changed        "#FE6D73")
 
     (bg-removed        "#0A0A1A")
     (bg-removed-faint  "#050515")
     (bg-removed-refine "#0F0F2A")
-    (fg-removed        "#FF8FFD")
 
     
     (bg-red-intense     "#2A0F0F")
@@ -101,6 +98,9 @@
 (defconst modern-laser-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

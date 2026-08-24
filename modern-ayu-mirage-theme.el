@@ -71,17 +71,14 @@
     (bg-added         "#1A2E1F")
     (bg-added-faint   "#152A1A")
     (bg-added-refine  "#204028")
-    (fg-added         "#87D96C")
 
     (bg-changed        "#1A2430")
     (bg-changed-faint  "#141E28")
     (bg-changed-refine "#1F2A38")
-    (fg-changed        "#80BFFF")
 
     (bg-removed        "#2E1A1A")
     (bg-removed-faint  "#251515")
     (bg-removed-refine "#3A2020")
-    (fg-removed        "#F27983")
 
     
     (bg-red-intense     "#331A1A")
@@ -101,6 +98,9 @@
 (defconst modern-ayu-mirage-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

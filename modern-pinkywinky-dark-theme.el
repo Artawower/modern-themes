@@ -82,22 +82,23 @@
     (bg-added         "#1e3524")
     (bg-added-faint   "#162a1c")
     (bg-added-refine  "#2b4a33")
-    (fg-added         "#8bcd5b")
 
     (bg-changed        "#3a2f1e")
     (bg-changed-faint  "#2a2316")
     (bg-changed-refine "#4b3d27")
-    (fg-changed        "#ECBE7B")
 
     (bg-removed        "#3b1f2a")
     (bg-removed-faint  "#2a1620")
     (bg-removed-refine "#512a38")
-    (fg-removed        "#FEAFE0")
+
     ))
 
 (defconst modern-pinkywinky-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

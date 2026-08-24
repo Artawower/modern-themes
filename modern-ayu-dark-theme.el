@@ -71,17 +71,14 @@
     (bg-added         "#1A2E1A")
     (bg-added-faint   "#152515")
     (bg-added-refine  "#2A402A")
-    (fg-added         "#7FD962")
 
     (bg-changed        "#1A2433")
     (bg-changed-faint  "#141E28")
     (bg-changed-refine "#1F2A3D")
-    (fg-changed        "#73B8FF")
 
     (bg-removed        "#2E1A1A")
     (bg-removed-faint  "#251515")
     (bg-removed-refine "#3A2020")
-    (fg-removed        "#F26D78")
 
     
     (bg-red-intense     "#331A1A")
@@ -101,6 +98,9 @@
 (defconst modern-ayu-dark-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

@@ -85,17 +85,14 @@
     (bg-added "#caf4da")
     (bg-added-faint "#dff6ea")
     (bg-added-refine "#bae9cf")
-    (fg-added "#005000")
 
     (bg-changed "#ffdfb9")
     (bg-changed-faint "#ffefcb")
     (bg-changed-refine "#ffcfa0")
-    (fg-changed "#553d00")
 
     (bg-removed "#ffcee0")
     (bg-removed-faint "#ffdfe6")
     (bg-removed-refine "#f5b6c8")
-    (fg-removed "#8f1313")
 
     ;; Special named colors
     (bg-completion-col "#f4cfff")
@@ -112,6 +109,9 @@
 (defconst modern-pinkywinky-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-main)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

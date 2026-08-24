@@ -180,7 +180,7 @@ Additionally generated:
 
 - =bg-*-intense= - Bright pastel versions for highlights
 - =bg-*-subtle= - Very light versions for subtle backgrounds
-- =bg-added/removed/changed= - Diff colors with faint/refine variants
+- =bg-added/removed/changed= - Diff colors with faint/refine variants; diff foregrounds remain =unspecified= so syntax highlighting is preserved when enabled
 - UI colors for mode-line, completion, hover, etc.
 
 ** Syntax Mapping

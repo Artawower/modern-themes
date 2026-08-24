@@ -61,5 +61,14 @@
       (should (string-match-p "(fg-term-white fg-dim)" output))
       (should (string-match-p "(fg-term-white-bright fg-main)" output)))))
 
+(ert-deftest mtg-diff-colors-preserve-syntax-foregrounds ()
+  (let ((colors (mtg--generate-diff-colors mtg-test--dark-palette 'dark)))
+    (dolist (key '(fg-added fg-changed fg-removed))
+      (should-not (assq key colors))
+      (should (eq (cadr (assq key mtg--palette-common)) 'unspecified)))
+    (dolist (key '(bg-added bg-changed bg-removed
+                   bg-added-refine bg-changed-refine bg-removed-refine))
+      (should (mtg--hex-p (alist-get key colors))))))
+
 (provide 'theme-generator-test)
 ;;; theme-generator-test.el ends here

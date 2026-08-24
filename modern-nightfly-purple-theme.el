@@ -94,21 +94,21 @@
     (bg-added         "#0f2a19")
     (bg-added-faint   "#0a1e12")
     (bg-added-refine  "#184f2d")
-    (fg-added         "#8aff7a")
 
     (bg-changed        "#2d240f")
     (bg-changed-faint  "#1e190c")
     (bg-changed-refine "#5a441f")
-    (fg-changed        "#ffd45a")
 
     (bg-removed        "#2d0f18")
     (bg-removed-faint  "#1c0a10")
-    (bg-removed-refine "#5a1f31")
-    (fg-removed        "#ff4f6e")))
+    (bg-removed-refine "#5a1f31")))
 
 (defconst modern-nightfly-purple-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

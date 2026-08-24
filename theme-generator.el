@@ -321,6 +321,9 @@ Returns a new plist with all expressions evaluated to hex colors."
     (bg-diff-context bg-dim)
     (bg-diff-focus bg-dim)
     (bg-diff-text bg-active)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
 
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)
@@ -504,7 +507,9 @@ If DARKER is non-nil, produce a darker variant (for changed/refine)."
 - bg-added/changed/removed: bg-dim (fills space, no holes)
 - bg-*-faint: bg-dim
 - bg-*-refine: muted accent color (highlights exact changes)
-- fg-*: bright accent color (green/yellow/red)"
+
+Diff foregrounds are semantic mappings in `mtg--palette-common', not base
+colors, so they can use `unspecified' to preserve syntax highlighting."
   (let* ((bg-main (mtg--plist-get palette 'bg-main))
          (bg-dim (or (mtg--plist-get palette 'bg-dim)
                      (if (eq variant 'dark)
@@ -512,7 +517,6 @@ If DARKER is non-nil, produce a darker variant (for changed/refine)."
                        (mtg--lighten bg-main 3))))
          (green (mtg--plist-get palette 'green))
          (red (mtg--plist-get palette 'red))
-         (yellow (mtg--plist-get palette 'yellow))
          ;; Refine backgrounds - muted accent colors for highlighting exact changes
          ;; changed-refine uses darker green (not yellow) - shows exact changes within added lines
          (bg-added-ref (mtg--make-diff-refine-bg green variant))
@@ -521,15 +525,12 @@ If DARKER is non-nil, produce a darker variant (for changed/refine)."
     `((bg-added . ,bg-dim)
       (bg-added-faint . ,bg-dim)
       (bg-added-refine . ,bg-added-ref)
-      (fg-added . ,green)
       (bg-removed . ,bg-dim)
       (bg-removed-faint . ,bg-dim)
       (bg-removed-refine . ,bg-removed-ref)
-      (fg-removed . ,red)
       (bg-changed . ,bg-dim)
       (bg-changed-faint . ,bg-dim)
-      (bg-changed-refine . ,bg-changed-ref)
-      (fg-changed . ,yellow))))
+      (bg-changed-refine . ,bg-changed-ref))))
 
 (defun mtg--generate-ui-colors (palette variant)
   "Generate UI colors (mode-line, completion, etc.) from PALETTE for VARIANT."

@@ -90,21 +90,21 @@
     (bg-added         "#3f444a")
     (bg-added-faint   "#141b24")
     (bg-added-refine  "#4b6a3a")
-    (fg-added         "#8bcd5b")
 
     (bg-changed        "#3f444a")
     (bg-changed-faint  "#141b24")
     (bg-changed-refine "#7a6330")
-    (fg-changed        "#ECBE7B")
 
     (bg-removed        "#3f444a")
     (bg-removed-faint  "#141b24")
-    (bg-removed-refine "#7a3945")
-    (fg-removed        "#f65866")))
+    (bg-removed-refine "#7a3945")))
 
 (defconst modern-deep-atom-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

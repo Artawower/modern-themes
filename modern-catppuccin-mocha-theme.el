@@ -86,17 +86,14 @@
     (bg-added         "#45475a")
     (bg-added-faint   "#313244")
     (bg-added-refine  "#5d7a5a")
-    (fg-added         "#a6e3a1")
 
     (bg-changed        "#45475a")
     (bg-changed-faint  "#313244")
     (bg-changed-refine "#8a7448")
-    (fg-changed        "#f9e2af")
 
     (bg-removed        "#45475a")
     (bg-removed-faint  "#313244")
     (bg-removed-refine "#8b4f5f")
-    (fg-removed        "#f38ba8")
 
     ;; Unique colors needed for mappings
     (bg-mode-line-active-col "#45475a") ;; Surface1
@@ -116,6 +113,9 @@
 (defconst modern-catppuccin-mocha-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-dim)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

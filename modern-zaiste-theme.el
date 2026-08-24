@@ -86,23 +86,23 @@
     (bg-added "#d6f5d6")
     (bg-added-faint "#ecfcec")
     (bg-added-refine "#bef5be")
-    (fg-added "#005000")
 
     (bg-changed "#ffecb3")
     (bg-changed-faint "#fff6da")
     (bg-changed-refine "#ffdd80")
-    (fg-changed "#553d00")
 
     (bg-removed "#ffccd6")
     (bg-removed-faint "#ffe6eb")
     (bg-removed-refine "#ff99aa")
-    (fg-removed "#8f1313")
 
     (bg-mode-line-active-col "#e7e7e7")))
 
 (defconst modern-zaiste-palette-common
   '((fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-main)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)

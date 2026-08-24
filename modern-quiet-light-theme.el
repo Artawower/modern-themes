@@ -98,17 +98,14 @@
     (bg-added         "#E4F3E1")
     (bg-added-faint   "#EEF8EB")
     (bg-added-refine  "#CFE8C7")
-    (fg-added         "#036D2F")
 
     (bg-changed        "#F8F3DE")
     (bg-changed-faint  "#FAF7EB")
     (bg-changed-refine "#EADFB2")
-    (fg-changed        "#7A5A00")
 
     (bg-removed        "#F1E0E0")
     (bg-removed-faint  "#F8EAEA")
     (bg-removed-refine "#E6C7C7")
-    (fg-removed        "#8A1A1A")
 
     
     (fg-heading-0-col "#646695")
@@ -126,6 +123,9 @@
   '(
     (fringe unspecified)
     (fg-region unspecified)
+    (fg-added unspecified)
+    (fg-changed unspecified)
+    (fg-removed unspecified)
     (fg-term-black fg-main)
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)
