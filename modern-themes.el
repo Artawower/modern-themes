@@ -5,7 +5,7 @@
 ;; Author: artawower33@gmail.com
 ;; Maintainer: artawower
 ;; URL: https://github.com/artawower/modern-themes
-;; Version: 1.0.1
+;; Version: 1.0.2
 ;; Package-Requires: ((emacs "28.1") (modus-themes "5.0.0"))
 ;; Keywords: faces, theme, accessibility
 

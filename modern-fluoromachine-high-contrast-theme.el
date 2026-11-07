@@ -114,7 +114,7 @@
     (bg-mode-line-active bg-mode-line-active-col)
     (fg-mode-line-active fg-main)
 
-    (bg-completion bg-dim)
+    (bg-completion border)
     (bg-hover bg-hover-col)
     (bg-hover-secondary bg-hover-secondary-col)
     (bg-hl-line bg-dim)

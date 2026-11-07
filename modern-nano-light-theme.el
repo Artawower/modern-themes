@@ -190,7 +190,7 @@
     (bg-mode-line-active bg-dim)
     (fg-mode-line-active fg-strong)
 
-    (bg-completion bg-dim)
+    (bg-completion bg-blue-intense)
     (bg-hover bg-active)
     (bg-hover-secondary bg-active)
     (bg-hl-line bg-dim)
