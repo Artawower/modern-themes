@@ -318,7 +318,7 @@ Returns a new plist with all expressions evaluated to hex colors."
   '((fringe unspecified)
     (fg-region unspecified)
 
-    (bg-diff-context bg-dim)
+    (bg-diff-context bg-main)
     (bg-diff-focus bg-dim)
     (bg-diff-text bg-active)
     (fg-added unspecified)
@@ -488,49 +488,27 @@ These are very light, desaturated versions."
       (bg-magenta-subtle . ,(mtg--blend "#ffffff" (mtg--desaturate magenta 20) 0.3))
       (bg-cyan-subtle . ,(mtg--blend "#ffffff" (mtg--desaturate cyan 20) 0.3)))))
 
-(defun mtg--make-diff-refine-bg (color variant &optional darker)
-  "Create a diff refine background from COLOR for VARIANT.
-Results in a muted, darker version - subtle highlight that doesn't overpower text.
-If DARKER is non-nil, produce a darker variant (for changed/refine)."
-  (let* ((rgb (mtg--rgb color))
-         (hsl (apply #'color-rgb-to-hsl rgb))
-         (h (nth 0 hsl))
-         (target-s (if (eq variant 'dark) 0.15 0.35))
-         (target-l (if (eq variant 'dark)
-                       (if darker 0.18 0.23)
-                     (if darker 0.65 0.80))))
-    (mtg--hex (color-hsl-to-rgb h target-s target-l))))
+(defun mtg--generate-diff-colors (palette _variant)
+  "Generate diff/git colors from PALETTE.
 
-(defun mtg--generate-diff-colors (palette variant)
-  "Generate diff/git colors from PALETTE for VARIANT (dark/light).
-
-- bg-added/changed/removed: bg-dim (fills space, no holes)
-- bg-*-faint: bg-dim
-- bg-*-refine: muted accent color (highlights exact changes)
+Backgrounds tint `bg-main' towards the theme accents (green for added,
+red for removed, yellow for changed):
+- bg-*-faint: 8% (unfocused hunks)
+- bg-*: 15% (focused hunks)
+- bg-*-refine: 30% (exact changes within a line)
 
 Diff foregrounds are semantic mappings in `mtg--palette-common', not base
 colors, so they can use `unspecified' to preserve syntax highlighting."
-  (let* ((bg-main (mtg--plist-get palette 'bg-main))
-         (bg-dim (or (mtg--plist-get palette 'bg-dim)
-                     (if (eq variant 'dark)
-                         (mtg--darken bg-main 5)
-                       (mtg--lighten bg-main 3))))
-         (green (mtg--plist-get palette 'green))
-         (red (mtg--plist-get palette 'red))
-         ;; Refine backgrounds - muted accent colors for highlighting exact changes
-         ;; changed-refine uses darker green (not yellow) - shows exact changes within added lines
-         (bg-added-ref (mtg--make-diff-refine-bg green variant))
-         (bg-removed-ref (mtg--make-diff-refine-bg red variant))
-         (bg-changed-ref (mtg--make-diff-refine-bg green variant t)))
-    `((bg-added . ,bg-dim)
-      (bg-added-faint . ,bg-dim)
-      (bg-added-refine . ,bg-added-ref)
-      (bg-removed . ,bg-dim)
-      (bg-removed-faint . ,bg-dim)
-      (bg-removed-refine . ,bg-removed-ref)
-      (bg-changed . ,bg-dim)
-      (bg-changed-faint . ,bg-dim)
-      (bg-changed-refine . ,bg-changed-ref))))
+  (let ((bg-main (mtg--plist-get palette 'bg-main))
+        (result nil))
+    (dolist (spec '((added . green) (removed . red) (changed . yellow)))
+      (let ((accent (mtg--plist-get palette (cdr spec)))
+            (kind (car spec)))
+        (dolist (level '(("-faint" . 0.08) ("" . 0.15) ("-refine" . 0.30)))
+          (push (cons (intern (format "bg-%s%s" kind (car level)))
+                      (mtg--blend bg-main accent (cdr level)))
+                result))))
+    (nreverse result)))
 
 (defun mtg--generate-ui-colors (palette variant)
   "Generate UI colors (mode-line, completion, etc.) from PALETTE for VARIANT."

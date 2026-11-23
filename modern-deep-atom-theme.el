@@ -87,17 +87,17 @@
     (bg-magenta-subtle "#facdf5")
     (bg-cyan-subtle "#c2ecf0")
 
-    (bg-added         "#3f444a")
-    (bg-added-faint   "#141b24")
-    (bg-added-refine  "#4b6a3a")
+    (bg-added         "#2a3a34")
+    (bg-added-faint   "#232e31")
+    (bg-added-refine  "#3b543b")
 
-    (bg-changed        "#3f444a")
-    (bg-changed-faint  "#141b24")
-    (bg-changed-refine "#7a6330")
+    (bg-changed        "#393839")
+    (bg-changed-faint  "#2a2d34")
+    (bg-changed-refine "#595045")
 
-    (bg-removed        "#3f444a")
-    (bg-removed-faint  "#141b24")
-    (bg-removed-refine "#7a3945")))
+    (bg-removed        "#3b2936")
+    (bg-removed-faint  "#2b2532")
+    (bg-removed-refine "#5c313e")))
 
 (defconst modern-deep-atom-palette-common
   '((fringe unspecified)
@@ -110,10 +110,10 @@
     (fg-term-white fg-dim)
     (fg-term-white-bright fg-main)
 
-    (bg-diff-context bg-dim)
+    (bg-diff-context bg-main)
     (bg-diff-focus bg-dim)
     (bg-diff-text bg-active)
-    (bg-diff-context bg-dim)
+    (bg-diff-context bg-main)
 
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)

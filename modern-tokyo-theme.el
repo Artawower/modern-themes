@@ -114,7 +114,7 @@
     (fg-term-white fg-dim)
     (fg-term-white-bright fg-main)
 
-    (bg-diff-context bg-dim)
+    (bg-diff-context bg-main)
     (bg-diff-focus bg-dim)
     (bg-diff-text bg-active)
 

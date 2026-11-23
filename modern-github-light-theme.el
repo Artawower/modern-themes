@@ -114,7 +114,7 @@
     (fg-term-black-bright fg-dim)
     (fg-term-white fg-dim)
     (fg-term-white-bright fg-main)
-    (bg-diff-context bg-dim)
+    (bg-diff-context bg-main)
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)
     (bg-tab-other bg-dim)))

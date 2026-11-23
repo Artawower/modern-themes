@@ -89,17 +89,17 @@
     (bg-magenta-subtle "#47435e")
     (bg-cyan-subtle "#3f4b5c")
 
-    (bg-added         "#51576d")
-    (bg-added-faint   "#414559")
-    (bg-added-refine  "#637d52")
+    (bg-added         "#414b50")
+    (bg-added-faint   "#39404b")
+    (bg-added-refine  "#53635a")
 
-    (bg-changed        "#51576d")
-    (bg-changed-faint  "#414559")
-    (bg-changed-refine "#876f44")
+    (bg-changed        "#4b4a51")
+    (bg-changed-faint  "#3e3f4b")
+    (bg-changed-refine "#66605c")
 
-    (bg-removed        "#51576d")
-    (bg-removed-faint  "#414559")
-    (bg-removed-refine "#8a4e4f")
+    (bg-removed        "#4b3f4f")
+    (bg-removed-faint  "#3e3a4a")
+    (bg-removed-refine "#664b58")
 
     
     (bg-mode-line-active-col "#51576d") 
@@ -127,7 +127,7 @@
     (fg-term-white fg-dim)
     (fg-term-white-bright fg-main)
 
-    (bg-diff-context bg-dim)
+    (bg-diff-context bg-main)
 
     (bg-tab-bar bg-alt)
     (bg-tab-current bg-main)

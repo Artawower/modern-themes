@@ -105,7 +105,7 @@
     (fg-term-white-bright fg-main)
 
     ;; Diff defaults for Modus
-    (bg-diff-context bg-dim)
+    (bg-diff-context bg-main)
     (bg-diff-focus   bg-alt)
     (bg-diff-text    bg-active)
 

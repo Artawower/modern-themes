@@ -70,5 +70,18 @@
                    bg-added-refine bg-changed-refine bg-removed-refine))
       (should (mtg--hex-p (alist-get key colors))))))
 
+(ert-deftest mtg-diff-colors-follow-theme-accents ()
+  (let* ((palette mtg-test--dark-palette)
+         (colors (mtg--generate-diff-colors palette 'dark))
+         (bg-main (plist-get palette 'bg-main)))
+    (should (equal (alist-get 'bg-added colors)
+                   (mtg--blend bg-main (plist-get palette 'green) 0.15)))
+    (should (equal (alist-get 'bg-removed colors)
+                   (mtg--blend bg-main (plist-get palette 'red) 0.15)))
+    (should-not (equal (alist-get 'bg-added colors)
+                       (alist-get 'bg-removed colors)))
+    (should (eq (cadr (assq 'bg-diff-context mtg--palette-common))
+                'bg-main))))
+
 (provide 'theme-generator-test)
 ;;; theme-generator-test.el ends here
